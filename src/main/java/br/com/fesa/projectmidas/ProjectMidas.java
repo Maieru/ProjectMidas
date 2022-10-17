@@ -9,12 +9,14 @@ public class ProjectMidas {
         // Daniel
         // João
         // Kauan
+        // AlexThunder
         //
         System.out.println("Eu tinha botado uns comentário aqui, é pra preencher ali encima!!!"); 
         System.out.println("De um sonho altruísta nasceu");
         System.out.println("A semente se fez germinar");
         System.out.println("Do ardoroso trabalho se ergueu");
         System.out.println("Na nobre missão de ensinar");
+        System.out.println("Olá NetFeijão");
         
     }
 }
