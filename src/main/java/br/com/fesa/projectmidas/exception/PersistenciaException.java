@@ -5,6 +5,13 @@ import java.io.PrintWriter;
 
 public class PersistenciaException extends Exception {
 
+    public PersistenciaException() {
+    }
+
+    public PersistenciaException(String message) {
+        super(message);
+    }
+    
     @Override
     public void setStackTrace(StackTraceElement[] stackTrace) {
         super.setStackTrace(stackTrace); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
