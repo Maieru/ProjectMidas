@@ -28,7 +28,7 @@ CREATE TABLE MIDAS.tbHistoricoFatura (
     Valor               DOUBLE          NOT NULL,
     DataInicio          TIMESTAMP       NOT NULL,
     DataTermino         TIMESTAMP       NOT NULL,
-    Vencimento          DATE            NOT NULL,
+    Vencimento          TIMESTAMP       NOT NULL,
     Juros               DOUBLE          NOT NULL
 );
 
