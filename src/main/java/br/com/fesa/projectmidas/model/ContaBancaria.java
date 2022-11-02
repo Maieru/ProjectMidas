@@ -10,12 +10,11 @@ public class ContaBancaria {
     private String correntista;
     private String CPF;
     private List<CartaoCredito> cartoes;
-    private CarteiraInvestimento carteiraDeInvestimentos;
 
     public ContaBancaria() {
     }
 
-    public ContaBancaria(Integer numero, Agencia agencia, String senha, double saldo, String correntista, String CPF, List<CartaoCredito> cartoes, CarteiraInvestimento carteiraDeInvestimentos) {
+    public ContaBancaria(Integer numero, Agencia agencia, String senha, double saldo, String correntista, String CPF, List<CartaoCredito> cartoes) {
         this.numero = numero;
         this.agencia = agencia;
         this.senha = senha;
@@ -23,7 +22,6 @@ public class ContaBancaria {
         this.correntista = correntista;
         this.CPF = CPF;
         this.cartoes = cartoes;
-        this.carteiraDeInvestimentos = carteiraDeInvestimentos;
     }
 
     public Integer getNumero() {
@@ -80,14 +78,6 @@ public class ContaBancaria {
 
     public void setCartoes(List<CartaoCredito> cartoes) {
         this.cartoes = cartoes;
-    }
-
-    public CarteiraInvestimento getCarteiraDeInvestimentos() {
-        return carteiraDeInvestimentos;
-    }
-
-    public void setCarteiraDeInvestimentos(CarteiraInvestimento carteiraDeInvestimentos) {
-        this.carteiraDeInvestimentos = carteiraDeInvestimentos;
     }
    
     public void modificaSaldo(double valorASerAdicionado){
