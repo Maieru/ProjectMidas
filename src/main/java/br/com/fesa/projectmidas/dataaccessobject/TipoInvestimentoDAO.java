@@ -43,7 +43,7 @@ public class TipoInvestimentoDAO implements GenericDAO<TipoInvestimento> {
 
     @Override
     public void inserir(TipoInvestimento investimento) throws PersistenciaException {
-        String sql = String.format("INSERT INTO %s (NOME, RENDIMENTO, VALORMINIMO) VALUES (?, ?, ?)", nomeTabela);
+        String sql = String.format("INSERT INTO %s (NOME, RENDIMENTO, VALORMINIMO, SIGLA) VALUES (?, ?, ?, ?)", nomeTabela);
 
         Connection connection = null;
         try {
@@ -53,6 +53,7 @@ public class TipoInvestimentoDAO implements GenericDAO<TipoInvestimento> {
             pStatement.setString(1, investimento.getNome());
             pStatement.setString(2, Double.toString(investimento.getRendimentos()));
             pStatement.setString(3, Double.toString(investimento.getValorMinimo()));
+            pStatement.setString(4, investimento.getSigla());
 
             pStatement.execute();
         } catch (ClassNotFoundException ex) {
@@ -72,7 +73,7 @@ public class TipoInvestimentoDAO implements GenericDAO<TipoInvestimento> {
 
     @Override
     public void alterar(TipoInvestimento investimento) throws PersistenciaException {
-        String sql = String.format("UPDATE %s SET NOME=?, RENDIMENTO=?, VALORMINIMO=? WHERE CODIGO = ?", nomeTabela);
+        String sql = String.format("UPDATE %s SET NOME=?, RENDIMENTO=?, VALORMINIMO=?, SIGLA=? WHERE CODIGO = ?", nomeTabela);
 
         Connection connection = null;
         try {
@@ -82,7 +83,8 @@ public class TipoInvestimentoDAO implements GenericDAO<TipoInvestimento> {
             pStatement.setString(1, investimento.getNome());
             pStatement.setString(2, Double.toString(investimento.getRendimentos()));
             pStatement.setString(3, Double.toString(investimento.getValorMinimo()));
-            pStatement.setString(4, Integer.toString(investimento.getCodigo()));
+            pStatement.setString(4, investimento.getSigla());
+            pStatement.setString(5, Integer.toString(investimento.getCodigo()));
 
             pStatement.execute();
         } catch (ClassNotFoundException ex) {
@@ -157,6 +159,10 @@ public class TipoInvestimentoDAO implements GenericDAO<TipoInvestimento> {
     }
     
     private TipoInvestimento montaObjeto(ResultSet result) throws SQLException{
-        return new TipoInvestimento(result.getInt("CODIGO"), result.getString("NOME"), result.getDouble("RENDIMENTO"), result.getDouble("VALORMINIMO"));
+        return new TipoInvestimento(result.getInt("CODIGO"),
+                                    result.getString("NOME"),
+                                    result.getString("SIGLA"),
+                                    result.getDouble("RENDIMENTO"),
+                                    result.getDouble("VALORMINIMO"));
     }
 }

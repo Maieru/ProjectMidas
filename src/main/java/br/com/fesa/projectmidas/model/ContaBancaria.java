@@ -1,42 +1,44 @@
 package br.com.fesa.projectmidas.model;
 
+import java.util.List;
+
 public class ContaBancaria {
-    private Integer numeroConta;
-    private Integer agencia;
+    private Integer numero;
+    private Agencia agencia;
     private String senha;
     private double saldo;
-    private String nomeDono;
-    private String CPFDono;
-    private double limiteCredito;
-    private double creditoDisponivel;
+    private String correntista;
+    private String CPF;
+    private List<CartaoCredito> cartoes;
+    private CarteiraInvestimento carteiraDeInvestimentos;
 
     public ContaBancaria() {
     }
 
-    public ContaBancaria(Integer numeroConta, Integer agencia, String senha, double saldo, String nomeDono, String CPFDono, double limiteCredito, double creditoDisponivel) {
-        this.numeroConta = numeroConta;
+    public ContaBancaria(Integer numero, Agencia agencia, String senha, double saldo, String correntista, String CPF, List<CartaoCredito> cartoes, CarteiraInvestimento carteiraDeInvestimentos) {
+        this.numero = numero;
         this.agencia = agencia;
         this.senha = senha;
         this.saldo = saldo;
-        this.nomeDono = nomeDono;
-        this.CPFDono = CPFDono;
-        this.limiteCredito = limiteCredito;
-        this.creditoDisponivel = creditoDisponivel;
+        this.correntista = correntista;
+        this.CPF = CPF;
+        this.cartoes = cartoes;
+        this.carteiraDeInvestimentos = carteiraDeInvestimentos;
     }
 
-    public Integer getNumeroConta() {
-        return numeroConta;
+    public Integer getNumero() {
+        return numero;
     }
 
-    public void setNumeroConta(Integer numeroConta) {
-        this.numeroConta = numeroConta;
+    public void setNumero(Integer numero) {
+        this.numero = numero;
     }
 
-    public Integer getAgencia() {
+    public Agencia getAgencia() {
         return agencia;
     }
 
-    public void setAgencia(Integer agencia) {
+    public void setAgencia(Agencia agencia) {
         this.agencia = agencia;
     }
 
@@ -52,38 +54,42 @@ public class ContaBancaria {
         return saldo;
     }
 
-    public String getNomeDono() {
-        return nomeDono;
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
     }
 
-    public void setNomeDono(String nomeDono) {
-        this.nomeDono = nomeDono;
+    public String getCorrentista() {
+        return correntista;
     }
 
-    public String getCPFDono() {
-        return CPFDono;
+    public void setCorrentista(String correntista) {
+        this.correntista = correntista;
     }
 
-    public void setCPFDono(String CPFDono) {
-        this.CPFDono = CPFDono;
+    public String getCPF() {
+        return CPF;
     }
 
-    public double getLimiteCredito() {
-        return limiteCredito;
+    public void setCPF(String CPF) {
+        this.CPF = CPF;
     }
 
-    public void setLimiteCredito(double limiteCredito) {
-        this.limiteCredito = limiteCredito;
+    public List<CartaoCredito> getCartoes() {
+        return cartoes;
     }
 
-    public double getCreditoDisponivel() {
-        return creditoDisponivel;
+    public void setCartoes(List<CartaoCredito> cartoes) {
+        this.cartoes = cartoes;
     }
 
-    public void setCreditoDisponivel(double creditoDisponivel) {
-        this.creditoDisponivel = creditoDisponivel;
+    public CarteiraInvestimento getCarteiraDeInvestimentos() {
+        return carteiraDeInvestimentos;
     }
-    
+
+    public void setCarteiraDeInvestimentos(CarteiraInvestimento carteiraDeInvestimentos) {
+        this.carteiraDeInvestimentos = carteiraDeInvestimentos;
+    }
+   
     public void modificaSaldo(double valorASerAdicionado){
         this.saldo += valorASerAdicionado;
     }

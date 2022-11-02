@@ -4,17 +4,17 @@ import java.time.LocalDateTime;
 
 public class Investimento {
     private Integer codigo;
-    private Integer numeroConta;
-    private Integer tipoInvestimento;
+    private ContaBancaria conta;
+    private TipoInvestimento tipoInvestimento;
     private LocalDateTime data;
     private double valorInvestido;
 
     public Investimento() {
     }
 
-    public Investimento(Integer codigo, Integer numeroConta, Integer tipoInvestimento, LocalDateTime data, double valorInvestido) {
+    public Investimento(Integer codigo, ContaBancaria conta, TipoInvestimento tipoInvestimento, LocalDateTime data, double valorInvestido) {
         this.codigo = codigo;
-        this.numeroConta = numeroConta;
+        this.conta = conta;
         this.tipoInvestimento = tipoInvestimento;
         this.data = data;
         this.valorInvestido = valorInvestido;
@@ -28,19 +28,19 @@ public class Investimento {
         this.codigo = codigo;
     }
 
-    public Integer getNumeroConta() {
-        return numeroConta;
+    public ContaBancaria getConta() {
+        return conta;
     }
 
-    public void setNumeroConta(Integer numeroConta) {
-        this.numeroConta = numeroConta;
+    public void setConta(ContaBancaria conta) {
+        this.conta = conta;
     }
 
-    public Integer getTipoInvestimento() {
+    public TipoInvestimento getTipoInvestimento() {
         return tipoInvestimento;
     }
 
-    public void setTipoInvestimento(Integer tipoInvestimento) {
+    public void setTipoInvestimento(TipoInvestimento tipoInvestimento) {
         this.tipoInvestimento = tipoInvestimento;
     }
 
@@ -59,6 +59,4 @@ public class Investimento {
     public void setValorInvestido(double valorInvestido) {
         this.valorInvestido = valorInvestido;
     }
-    
-    
 }

@@ -4,8 +4,8 @@ import java.time.LocalDateTime;
 
 public class Transacao {
     private Integer codigo;
-    private Integer contaOrigem;
-    private Integer contaDestino;
+    private ContaBancaria origem;
+    private ContaBancaria destino;
     private LocalDateTime dataTransacao;
     private double valor;
     private String descricao;
@@ -15,10 +15,10 @@ public class Transacao {
     public Transacao() {
     }
 
-    public Transacao(Integer codigo, Integer contaOrigem, Integer contaDestino, LocalDateTime dataTransacao, double valor, String descricao, TipoTransacao tipoTransacao, boolean pagoComCredito) {
+    public Transacao(Integer codigo, ContaBancaria origem, ContaBancaria destino, LocalDateTime dataTransacao, double valor, String descricao, TipoTransacao tipoTransacao, boolean pagoComCredito) {
         this.codigo = codigo;
-        this.contaOrigem = contaOrigem;
-        this.contaDestino = contaDestino;
+        this.origem = origem;
+        this.destino = destino;
         this.dataTransacao = dataTransacao;
         this.valor = valor;
         this.descricao = descricao;
@@ -34,20 +34,20 @@ public class Transacao {
         this.codigo = codigo;
     }
 
-    public Integer getContaOrigem() {
-        return contaOrigem;
+    public ContaBancaria getOrigem() {
+        return origem;
     }
 
-    public void setContaOrigem(Integer contaOrigem) {
-        this.contaOrigem = contaOrigem;
+    public void setOrigem(ContaBancaria origem) {
+        this.origem = origem;
     }
 
-    public Integer getContaDestino() {
-        return contaDestino;
+    public ContaBancaria getDestino() {
+        return destino;
     }
 
-    public void setContaDestino(Integer contaDestino) {
-        this.contaDestino = contaDestino;
+    public void setDestino(ContaBancaria destino) {
+        this.destino = destino;
     }
 
     public LocalDateTime getDataTransacao() {
