@@ -1,7 +1,8 @@
 package br.com.fesa.projectmidas.dataaccessobject;
 
 import br.com.fesa.projectmidas.exception.PersistenciaException;
-import br.com.fesa.projectmidas.model.Agencia;
+import br.com.fesa.projectmidas.model.CarteiraInvestimento;
+import br.com.fesa.projectmidas.model.ContaBancaria;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,13 +12,13 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class AgenciaDAO implements GenericDAO<Agencia> {
+public class CarteiraInvestimentoDAO implements GenericDAO<CarteiraInvestimento> {
 
-    private String nomeTabela = "MIDAS.TBTIPOINVESTIMENTO";
+    private String nomeTabela = "MIDAS.TBCARTEIRAINVESTIMENTO";
 
     @Override
-    public List<Agencia> listar() throws PersistenciaException {
-        List<Agencia> agencias = new ArrayList();
+    public List<CarteiraInvestimento> listar() throws PersistenciaException {
+        List<CarteiraInvestimento> cartoes = new ArrayList();
         String sql = String.format("SELECT * FROM %s", nomeTabela);
         Connection connection = null;
         try {
@@ -25,7 +26,7 @@ public class AgenciaDAO implements GenericDAO<Agencia> {
             PreparedStatement pStatement = connection.prepareStatement(sql);
             ResultSet result = pStatement.executeQuery();
             while (result.next()) {
-                agencias.add(montaObjeto(result));
+                cartoes.add(montaObjeto(result));
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
@@ -38,20 +39,24 @@ public class AgenciaDAO implements GenericDAO<Agencia> {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return agencias;
+        return cartoes;
     }
 
     @Override
-    public void inserir(Agencia agencia) throws PersistenciaException {
-        String sql = String.format("INSERT INTO %s (NumeroAgencia, Localizacao) VALUES (?, ?)", nomeTabela);
+    public void inserir(CarteiraInvestimento carteira) throws PersistenciaException {
+        String sql = String.format("insert into %s (NUMEROCONTA,\n"
+                + "    RENDIMENTO,\n"
+                + "    SALDONACARTEIRA)\n"
+                + "values (?, ?, ?);", nomeTabela);
 
         Connection connection = null;
         try {
             connection = Conexao.getInstance().getConnection();
             PreparedStatement pStatement = connection.prepareStatement(sql);
 
-            pStatement.setString(1, Integer.toString(agencia.getCodigo()));
-            pStatement.setString(2, agencia.getLocalizacao());
+            pStatement.setInt(1, carteira.getContaBancaria());
+            pStatement.setDouble(2, carteira.getRendimento());
+            pStatement.setDouble(3, carteira.getSaldo());
 
             pStatement.execute();
         } catch (ClassNotFoundException ex) {
@@ -70,16 +75,22 @@ public class AgenciaDAO implements GenericDAO<Agencia> {
     }
 
     @Override
-    public void alterar(Agencia agencia) throws PersistenciaException {
-        String sql = String.format("UPDATE %s SET Localizacao=? WHERE NumeroAgencia = ?", nomeTabela);
+    public void alterar(CarteiraInvestimento carteira) throws PersistenciaException {
+        String sql = String.format("Update %s SET("
+                + "    NUMEROCONTA=?,\n"
+                + "    RENDIMENTO=?,\n"
+                + "    SALDONACARTEIRA=?)\n"
+                + "    Where CODIGO=?;", nomeTabela);
 
         Connection connection = null;
         try {
             connection = Conexao.getInstance().getConnection();
             PreparedStatement pStatement = connection.prepareStatement(sql);
 
-            pStatement.setString(1, agencia.getLocalizacao());
-            pStatement.setString(2, Double.toString(agencia.getCodigo()));
+            pStatement.setInt(1, carteira.getContaBancaria());
+            pStatement.setDouble(2, carteira.getRendimento());
+            pStatement.setDouble(3, carteira.getSaldo());
+            pStatement.setDouble(4, carteira.getCodigo());
 
             pStatement.execute();
         } catch (ClassNotFoundException ex) {
@@ -98,15 +109,15 @@ public class AgenciaDAO implements GenericDAO<Agencia> {
     }
 
     @Override
-    public void remover(Agencia agencia) throws PersistenciaException {
-        String sql = String.format("DELETE FROM %s WHERE NumeroAgencia = ?", nomeTabela);
+    public void remover(CarteiraInvestimento carteira) throws PersistenciaException {
+        String sql = String.format("DELETE FROM %s WHERE Codigo = ?", nomeTabela);
 
         Connection connection = null;
         try {
             connection = Conexao.getInstance().getConnection();
 
             PreparedStatement pStatement = connection.prepareStatement(sql);
-            pStatement.setLong(1, agencia.getCodigo());
+            pStatement.setLong(1, carteira.getCodigo());
 
             pStatement.execute();
         } catch (ClassNotFoundException ex) {
@@ -125,19 +136,19 @@ public class AgenciaDAO implements GenericDAO<Agencia> {
     }
 
     @Override
-    public Agencia listarPorId(Agencia agencia) throws PersistenciaException {
-        String sql = String.format("SELECT * FROM %s WHERE NumeroAgencia = ?", nomeTabela);
+    public CarteiraInvestimento listarPorId(CarteiraInvestimento carteira) throws PersistenciaException {
+        String sql = String.format("SELECT * FROM %s WHERE Codigo = ?", nomeTabela);
         Connection connection = null;
-        
+
         try {
             connection = Conexao.getInstance().getConnection();
             PreparedStatement pStatement = connection.prepareStatement(sql);
-            
-            pStatement.setLong(1, agencia.getCodigo());
-            
+
+            pStatement.setLong(1, carteira.getCodigo());
+
             ResultSet result = pStatement.executeQuery();
             if (result.next()) {
-                agencia = montaObjeto(result);
+                carteira = montaObjeto(result);
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
@@ -150,11 +161,42 @@ public class AgenciaDAO implements GenericDAO<Agencia> {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return agencia;
+        return carteira;
     }
     
-    private Agencia montaObjeto(ResultSet result) throws SQLException{
-        return new Agencia(result.getInt("NUMEROAGENCIA"),
-                           result.getString("LOCALIZACAO"));
+    public CarteiraInvestimento listarPorConta(ContaBancaria conta) throws PersistenciaException {
+        CarteiraInvestimento carteira = new CarteiraInvestimento();
+        String sql = String.format("SELECT * FROM %s WHERE NumeroConta = ?", nomeTabela);
+        Connection connection = null;
+
+        try {
+            connection = Conexao.getInstance().getConnection();
+            PreparedStatement pStatement = connection.prepareStatement(sql);
+
+            pStatement.setLong(1, conta.getNumero());
+
+            ResultSet result = pStatement.executeQuery();
+            if (result.next()) {
+                carteira = montaObjeto(result);
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return carteira;
+    }
+
+    private CarteiraInvestimento montaObjeto(ResultSet result) throws SQLException {
+        return new CarteiraInvestimento(result.getInt("Codigo"),
+                                        result.getInt("NumeroConta"),
+                                        result.getDouble("SaldoNaCarteira"),
+                                        result.getDouble("Rendimento"));
     }
 }

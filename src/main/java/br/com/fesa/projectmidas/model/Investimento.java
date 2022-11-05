@@ -4,16 +4,18 @@ import java.time.LocalDateTime;
 
 public class Investimento {
     private Integer codigo;
-    private CarteiraInvestimento carteiraInvestimento;
+    private CarteiraInvestimento carteira;
+    private TipoInvestimento tipo;
     private LocalDateTime data;
     private double valorInvestido;
 
     public Investimento() {
     }
 
-    public Investimento(Integer codigo, CarteiraInvestimento carteiraInvestimento, LocalDateTime data, double valorInvestido) {
+    public Investimento(Integer codigo, CarteiraInvestimento carteira, TipoInvestimento tipo, LocalDateTime data, double valorInvestido) {
         this.codigo = codigo;
-        this.carteiraInvestimento = carteiraInvestimento;
+        this.carteira = carteira;
+        this.tipo = tipo;
         this.data = data;
         this.valorInvestido = valorInvestido;
     }
@@ -26,12 +28,20 @@ public class Investimento {
         this.codigo = codigo;
     }
 
-    public CarteiraInvestimento getCarteiraInvestimento() {
-        return carteiraInvestimento;
+    public CarteiraInvestimento getCarteira() {
+        return carteira;
     }
 
-    public void setCarteiraInvestimento(CarteiraInvestimento carteiraInvestimento) {
-        this.carteiraInvestimento = carteiraInvestimento;
+    public void setCarteira(CarteiraInvestimento carteira) {
+        this.carteira = carteira;
+    }
+
+    public TipoInvestimento getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoInvestimento tipo) {
+        this.tipo = tipo;
     }
 
     public LocalDateTime getData() {

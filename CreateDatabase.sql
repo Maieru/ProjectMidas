@@ -15,8 +15,9 @@ CREATE TABLE MIDAS.tbContaBanco (
 );
 
 CREATE TABLE MIDAS.tbCartaoCredito (
-    NumeroCartao        BIGINT          NOT NULL PRIMARY KEY,
+    Codigo              BIGINT          PRIMARY KEY,
     NumeroConta         BIGINT          NOT NULL REFERENCES tbContaBanco(NumeroConta),
+    NumeroCartao        VARCHAR(16)     NOT NULL,
     Senha               VARCHAR(128)    NOT NULL,
     LimiteCredito       DOUBLE          NOT NULL,
     CreditoUtilizado    DOUBLE          NOT NULL,
@@ -28,7 +29,7 @@ CREATE TABLE MIDAS.tbCartaoCredito (
 
 CREATE TABLE MIDAS.tbFatura (
     Codigo              BIGINT          NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
-    NumeroCartao        BIGINT          NOT NULL REFERENCES tbCartaoCredito(NumeroCartao),
+    CodigoCartao        BIGINT          NOT NULL REFERENCES tbCartaoCredito(Codigo),
     Valor               DOUBLE          NOT NULL,
     DataInicio          TIMESTAMP       NOT NULL,
     DataTermino         TIMESTAMP       NOT NULL,
@@ -65,7 +66,7 @@ CREATE TABLE MIDAS.tbTipoInvestimento (
 
 CREATE TABLE MIDAS.tbInvestimento (
     Codigo              BIGINT          NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
-    NumeroCarteira      BIGINT          NOT NULL REFERENCES tbCarteiraInvestimento(Codigo),
+    CodigoCarteira      BIGINT          NOT NULL REFERENCES tbCarteiraInvestimento(Codigo),
     TipoInvestimento    INT             NOT NULL REFERENCES tbTipoInvestimento(Codigo),
     Data                TIMESTAMP       NOT NULL,
     ValorInvestido      DOUBLE          NOT NULL

@@ -7,6 +7,10 @@ public class Agencia {
     public Agencia() {
     }
 
+    public Agencia(int codigo) {
+        this.codigo = codigo;
+    }
+
     public Agencia(int codigo, String localizacao) {
         this.codigo = codigo;
         this.localizacao = localizacao;

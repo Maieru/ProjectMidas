@@ -1,7 +1,10 @@
 package br.com.fesa.projectmidas.dataaccessobject;
 
 import br.com.fesa.projectmidas.exception.PersistenciaException;
-import br.com.fesa.projectmidas.model.Agencia;
+import br.com.fesa.projectmidas.model.CarteiraInvestimento;
+import br.com.fesa.projectmidas.model.Investimento;
+import br.com.fesa.projectmidas.model.TipoInvestimento;
+import br.com.fesa.projectmidas.negocio.DateHelper;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,13 +14,13 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class AgenciaDAO implements GenericDAO<Agencia> {
+public class InvestimentoDAO implements GenericDAO<Investimento> {
 
-    private String nomeTabela = "MIDAS.TBTIPOINVESTIMENTO";
+    private String nomeTabela = "MIDAS.TBINVESTIMENTO";
 
     @Override
-    public List<Agencia> listar() throws PersistenciaException {
-        List<Agencia> agencias = new ArrayList();
+    public List<Investimento> listar() throws PersistenciaException {
+        List<Investimento> investimentos = new ArrayList();
         String sql = String.format("SELECT * FROM %s", nomeTabela);
         Connection connection = null;
         try {
@@ -25,7 +28,7 @@ public class AgenciaDAO implements GenericDAO<Agencia> {
             PreparedStatement pStatement = connection.prepareStatement(sql);
             ResultSet result = pStatement.executeQuery();
             while (result.next()) {
-                agencias.add(montaObjeto(result));
+                investimentos.add(montaObjeto(result));
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
@@ -38,20 +41,26 @@ public class AgenciaDAO implements GenericDAO<Agencia> {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return agencias;
+        return investimentos;
     }
 
     @Override
-    public void inserir(Agencia agencia) throws PersistenciaException {
-        String sql = String.format("INSERT INTO %s (NumeroAgencia, Localizacao) VALUES (?, ?)", nomeTabela);
+    public void inserir(Investimento investimento) throws PersistenciaException {
+        String sql = String.format("insert into %s (DATA,\n"
+                + "    NUMEROCARTEIRA,\n"
+                + "    TIPOINVESTIMENTO,\n"
+                + "    VALORINVESTIDO)\n"
+                + "values(?, ?, ?, ?);", nomeTabela);
 
         Connection connection = null;
         try {
             connection = Conexao.getInstance().getConnection();
             PreparedStatement pStatement = connection.prepareStatement(sql);
 
-            pStatement.setString(1, Integer.toString(agencia.getCodigo()));
-            pStatement.setString(2, agencia.getLocalizacao());
+            pStatement.setObject(1, investimento.getData());
+            pStatement.setInt(2, investimento.getCarteira().getCodigo());
+            pStatement.setInt(3, investimento.getTipo().getCodigo());
+            pStatement.setDouble(4, investimento.getValorInvestido());
 
             pStatement.execute();
         } catch (ClassNotFoundException ex) {
@@ -70,16 +79,51 @@ public class AgenciaDAO implements GenericDAO<Agencia> {
     }
 
     @Override
-    public void alterar(Agencia agencia) throws PersistenciaException {
-        String sql = String.format("UPDATE %s SET Localizacao=? WHERE NumeroAgencia = ?", nomeTabela);
+    public void alterar(Investimento investimento) throws PersistenciaException {
+        String sql = String.format("Update %s SET("
+                + "    DATA=?,\n"
+                + "    NUMEROCARTEIRA=?,\n"
+                + "    TIPOINVESTIMENTO=?,\n"
+                + "    VALORINVESTIDO=?)\n"
+                + "    Where CODIGO=?", nomeTabela);
 
         Connection connection = null;
         try {
             connection = Conexao.getInstance().getConnection();
             PreparedStatement pStatement = connection.prepareStatement(sql);
 
-            pStatement.setString(1, agencia.getLocalizacao());
-            pStatement.setString(2, Double.toString(agencia.getCodigo()));
+            pStatement.setObject(1, investimento.getData());
+            pStatement.setInt(2, investimento.getCarteira().getCodigo());
+            pStatement.setInt(3, investimento.getTipo().getCodigo());
+            pStatement.setDouble(4, investimento.getValorInvestido());
+            pStatement.setInt(5, investimento.getCodigo());
+            
+            pStatement.execute();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+            throw new PersistenciaException("Não foi possível conectar à base de dados!");
+        } catch (SQLException ex) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+            throw new PersistenciaException("Não foi possível enviar o comando para a base de dados!");
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    @Override
+    public void remover(Investimento investimento) throws PersistenciaException {
+        String sql = String.format("DELETE FROM %s WHERE Codigo = ?", nomeTabela);
+
+        Connection connection = null;
+        try {
+            connection = Conexao.getInstance().getConnection();
+
+            PreparedStatement pStatement = connection.prepareStatement(sql);
+            pStatement.setLong(1, investimento.getCodigo());
 
             pStatement.execute();
         } catch (ClassNotFoundException ex) {
@@ -98,46 +142,19 @@ public class AgenciaDAO implements GenericDAO<Agencia> {
     }
 
     @Override
-    public void remover(Agencia agencia) throws PersistenciaException {
-        String sql = String.format("DELETE FROM %s WHERE NumeroAgencia = ?", nomeTabela);
-
+    public Investimento listarPorId(Investimento investimento) throws PersistenciaException {
+        String sql = String.format("SELECT * FROM %s WHERE Codigo = ?", nomeTabela);
         Connection connection = null;
-        try {
-            connection = Conexao.getInstance().getConnection();
 
-            PreparedStatement pStatement = connection.prepareStatement(sql);
-            pStatement.setLong(1, agencia.getCodigo());
-
-            pStatement.execute();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
-            throw new PersistenciaException("Não foi possível conectar à base de dados!");
-        } catch (SQLException ex) {
-            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
-            throw new PersistenciaException("Não foi possível enviar o comando para a base de dados!");
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }
-
-    @Override
-    public Agencia listarPorId(Agencia agencia) throws PersistenciaException {
-        String sql = String.format("SELECT * FROM %s WHERE NumeroAgencia = ?", nomeTabela);
-        Connection connection = null;
-        
         try {
             connection = Conexao.getInstance().getConnection();
             PreparedStatement pStatement = connection.prepareStatement(sql);
-            
-            pStatement.setLong(1, agencia.getCodigo());
-            
+
+            pStatement.setLong(1, investimento.getCodigo());
+
             ResultSet result = pStatement.executeQuery();
             if (result.next()) {
-                agencia = montaObjeto(result);
+                investimento = montaObjeto(result);
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
@@ -150,11 +167,17 @@ public class AgenciaDAO implements GenericDAO<Agencia> {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return agencia;
+        return investimento;
     }
-    
-    private Agencia montaObjeto(ResultSet result) throws SQLException{
-        return new Agencia(result.getInt("NUMEROAGENCIA"),
-                           result.getString("LOCALIZACAO"));
+
+    private Investimento montaObjeto(ResultSet result) throws PersistenciaException, SQLException {
+        CarteiraInvestimento cartaoCredito = new CarteiraInvestimentoDAO().listarPorId(new CarteiraInvestimento(result.getInt("CodigoCarteira")));
+        TipoInvestimento tipoInvestimento = new TipoInvestimentoDAO().listarPorId(new TipoInvestimento(result.getInt("TipoInvestimento")));
+
+        return new Investimento(result.getInt("Codigo"),
+                cartaoCredito,
+                tipoInvestimento,
+                DateHelper.asLocalDateTime(result.getDate("Data")),
+                result.getDouble("ValorInvestido"));
     }
 }

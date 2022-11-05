@@ -10,6 +10,10 @@ public class TipoInvestimento {
     public TipoInvestimento() {
     }
 
+    public TipoInvestimento(Integer codigo) {
+        this.codigo = codigo;
+    }
+    
     public TipoInvestimento(Integer codigo, String nome, String sigla, double rendimentos, double valorMinimo) {
         this.codigo = codigo;
         this.nome = nome;

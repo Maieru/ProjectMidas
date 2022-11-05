@@ -1,5 +1,8 @@
 package br.com.fesa.projectmidas.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public enum TipoTransacao {
     DEPOSITO(0, "Deposito"),
     SAQUE(1, "Saque"),
@@ -11,6 +14,13 @@ public enum TipoTransacao {
     private Integer codigo;
     private String descricao;
     
+    private static Map<Integer, TipoTransacao> mapa = new HashMap<Integer, TipoTransacao>();
+    
+    static {
+        for (TipoTransacao tipoTransacao : TipoTransacao.values()){
+            mapa.put(tipoTransacao.codigo, tipoTransacao);
+        }
+    }
     TipoTransacao(Integer codigo, String descricao){
         this.codigo = codigo;
         this.descricao = descricao;
@@ -22,5 +32,9 @@ public enum TipoTransacao {
 
     public String getDescricao() {
         return descricao;
+    }
+    
+    public static TipoTransacao getById(Integer id){
+        return mapa.get(id);
     }
 }

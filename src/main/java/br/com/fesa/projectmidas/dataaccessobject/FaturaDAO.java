@@ -1,7 +1,9 @@
 package br.com.fesa.projectmidas.dataaccessobject;
 
 import br.com.fesa.projectmidas.exception.PersistenciaException;
-import br.com.fesa.projectmidas.model.Agencia;
+import br.com.fesa.projectmidas.model.CartaoCredito;
+import br.com.fesa.projectmidas.model.Fatura;
+import br.com.fesa.projectmidas.negocio.DateHelper;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,13 +13,13 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class AgenciaDAO implements GenericDAO<Agencia> {
+public class FaturaDAO implements GenericDAO<Fatura> {
 
-    private String nomeTabela = "MIDAS.TBTIPOINVESTIMENTO";
+    private String nomeTabela = "MIDAS.TBFATURA";
 
     @Override
-    public List<Agencia> listar() throws PersistenciaException {
-        List<Agencia> agencias = new ArrayList();
+    public List<Fatura> listar() throws PersistenciaException {
+        List<Fatura> faturas = new ArrayList();
         String sql = String.format("SELECT * FROM %s", nomeTabela);
         Connection connection = null;
         try {
@@ -25,7 +27,7 @@ public class AgenciaDAO implements GenericDAO<Agencia> {
             PreparedStatement pStatement = connection.prepareStatement(sql);
             ResultSet result = pStatement.executeQuery();
             while (result.next()) {
-                agencias.add(montaObjeto(result));
+                faturas.add(montaObjeto(result));
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
@@ -38,20 +40,32 @@ public class AgenciaDAO implements GenericDAO<Agencia> {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return agencias;
+        return faturas;
     }
 
     @Override
-    public void inserir(Agencia agencia) throws PersistenciaException {
-        String sql = String.format("INSERT INTO %s (NumeroAgencia, Localizacao) VALUES (?, ?)", nomeTabela);
+    public void inserir(Fatura fatura) throws PersistenciaException {
+        String sql = String.format("insert into %s ( DATAINICIO,\n"
+                + "    DATATERMINO,\n"
+                + "    JUROS,\n"
+                + "    CODIGOCARTAO,\n"
+                + "    PAGO,\n"
+                + "    VALOR,\n"
+                + "    VENCIMENTO)\n"
+                + "values (?, ?, ?, ?, ?, ?, ?);", nomeTabela);
 
         Connection connection = null;
         try {
             connection = Conexao.getInstance().getConnection();
             PreparedStatement pStatement = connection.prepareStatement(sql);
 
-            pStatement.setString(1, Integer.toString(agencia.getCodigo()));
-            pStatement.setString(2, agencia.getLocalizacao());
+            pStatement.setObject(1, fatura.getDataInicioPeriodo());
+            pStatement.setObject(2, fatura.getDataFimPeriodo());
+            pStatement.setDouble(3, fatura.getJuros());
+            pStatement.setInt(4, fatura.getCartao().getCodigo());
+            pStatement.setBoolean(5, fatura.isPago());
+            pStatement.setDouble(6, fatura.getValor());
+            pStatement.setObject(7, fatura.getDataVencimento());
 
             pStatement.execute();
         } catch (ClassNotFoundException ex) {
@@ -70,16 +84,30 @@ public class AgenciaDAO implements GenericDAO<Agencia> {
     }
 
     @Override
-    public void alterar(Agencia agencia) throws PersistenciaException {
-        String sql = String.format("UPDATE %s SET Localizacao=? WHERE NumeroAgencia = ?", nomeTabela);
+    public void alterar(Fatura fatura) throws PersistenciaException {
+        String sql = String.format("Update %s SET("
+                + "    DATAINICIO=?,\n"
+                + "    DATATERMINO=?,\n"
+                + "    JUROS=?,\n"
+                + "    CODIGOCARTAO=?,\n"
+                + "    PAGO=?,\n"
+                + "    VALOR=?,\n"
+                + "    VENCIMENTO=?)\n"
+                + "    Where CODIGO-?", nomeTabela);
 
         Connection connection = null;
         try {
             connection = Conexao.getInstance().getConnection();
             PreparedStatement pStatement = connection.prepareStatement(sql);
 
-            pStatement.setString(1, agencia.getLocalizacao());
-            pStatement.setString(2, Double.toString(agencia.getCodigo()));
+            pStatement.setObject(1, fatura.getDataInicioPeriodo());
+            pStatement.setObject(2, fatura.getDataFimPeriodo());
+            pStatement.setDouble(3, fatura.getJuros());
+            pStatement.setInt(4, fatura.getCartao().getCodigo());
+            pStatement.setBoolean(5, fatura.isPago());
+            pStatement.setDouble(6, fatura.getValor());
+            pStatement.setObject(7, fatura.getDataVencimento());
+            pStatement.setObject(8, fatura.getCodigo());
 
             pStatement.execute();
         } catch (ClassNotFoundException ex) {
@@ -98,15 +126,15 @@ public class AgenciaDAO implements GenericDAO<Agencia> {
     }
 
     @Override
-    public void remover(Agencia agencia) throws PersistenciaException {
-        String sql = String.format("DELETE FROM %s WHERE NumeroAgencia = ?", nomeTabela);
+    public void remover(Fatura fatura) throws PersistenciaException {
+        String sql = String.format("DELETE FROM %s WHERE Codigo = ?", nomeTabela);
 
         Connection connection = null;
         try {
             connection = Conexao.getInstance().getConnection();
 
             PreparedStatement pStatement = connection.prepareStatement(sql);
-            pStatement.setLong(1, agencia.getCodigo());
+            pStatement.setLong(1, fatura.getCodigo());
 
             pStatement.execute();
         } catch (ClassNotFoundException ex) {
@@ -125,19 +153,19 @@ public class AgenciaDAO implements GenericDAO<Agencia> {
     }
 
     @Override
-    public Agencia listarPorId(Agencia agencia) throws PersistenciaException {
-        String sql = String.format("SELECT * FROM %s WHERE NumeroAgencia = ?", nomeTabela);
+    public Fatura listarPorId(Fatura fatura) throws PersistenciaException {
+        String sql = String.format("SELECT * FROM %s WHERE Codigo = ?", nomeTabela);
         Connection connection = null;
-        
+
         try {
             connection = Conexao.getInstance().getConnection();
             PreparedStatement pStatement = connection.prepareStatement(sql);
-            
-            pStatement.setLong(1, agencia.getCodigo());
-            
+
+            pStatement.setLong(1, fatura.getCodigo());
+
             ResultSet result = pStatement.executeQuery();
             if (result.next()) {
-                agencia = montaObjeto(result);
+                fatura = montaObjeto(result);
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
@@ -150,11 +178,19 @@ public class AgenciaDAO implements GenericDAO<Agencia> {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return agencia;
+        return fatura;
     }
-    
-    private Agencia montaObjeto(ResultSet result) throws SQLException{
-        return new Agencia(result.getInt("NUMEROAGENCIA"),
-                           result.getString("LOCALIZACAO"));
+
+    private Fatura montaObjeto(ResultSet result) throws PersistenciaException, SQLException {
+        CartaoCredito cartaoCredito = new CartaoCreditoDAO().listarPorId(new CartaoCredito(result.getInt("CodigoCartao")));
+
+        return new Fatura(result.getInt("Codigo"),
+                cartaoCredito,
+                result.getDouble("Valor"),
+                DateHelper.asLocalDateTime(result.getDate("DataInicio")),
+                DateHelper.asLocalDateTime(result.getDate("DataTermino")),
+                DateHelper.asLocalDateTime(result.getDate("Vencimento")),
+                result.getDouble("Juros"),
+                result.getBoolean("Pago"));
     }
 }
