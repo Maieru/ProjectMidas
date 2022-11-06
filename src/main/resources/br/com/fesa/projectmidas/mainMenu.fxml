@@ -6,7 +6,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="br.com.fesa.projectmidas.controllers.MainMenuController">
-    
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="661.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fesa.projectmidas.controllers.MainMenuController">
+   <children>
+      <Button fx:id="btnGerenciarAgencias" layoutX="497.0" layoutY="256.0" mnemonicParsing="false" onAction="#gerenciarAgencias" text="Gerenciar Agências" />
+   </children>
 </AnchorPane>

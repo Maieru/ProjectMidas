@@ -157,6 +157,7 @@ public class CartaoCreditoDAO implements GenericDAO<CartaoCredito> {
             ResultSet result = pStatement.executeQuery();
             if (result.next()) {
                 cartao = montaObjeto(result);
+                return cartao;
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
@@ -169,7 +170,7 @@ public class CartaoCreditoDAO implements GenericDAO<CartaoCredito> {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return cartao;
+        return null;
     }
     
     public List<CartaoCredito> listarPorConta(ContaBancaria conta) throws PersistenciaException {

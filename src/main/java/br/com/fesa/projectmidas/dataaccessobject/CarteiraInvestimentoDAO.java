@@ -149,6 +149,7 @@ public class CarteiraInvestimentoDAO implements GenericDAO<CarteiraInvestimento>
             ResultSet result = pStatement.executeQuery();
             if (result.next()) {
                 carteira = montaObjeto(result);
+                return carteira;
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
@@ -161,9 +162,9 @@ public class CarteiraInvestimentoDAO implements GenericDAO<CarteiraInvestimento>
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return carteira;
+        return null;
     }
-    
+
     public CarteiraInvestimento listarPorConta(ContaBancaria conta) throws PersistenciaException {
         CarteiraInvestimento carteira = new CarteiraInvestimento();
         String sql = String.format("SELECT * FROM %s WHERE NumeroConta = ?", nomeTabela);
@@ -195,8 +196,8 @@ public class CarteiraInvestimentoDAO implements GenericDAO<CarteiraInvestimento>
 
     private CarteiraInvestimento montaObjeto(ResultSet result) throws SQLException {
         return new CarteiraInvestimento(result.getInt("Codigo"),
-                                        result.getInt("NumeroConta"),
-                                        result.getDouble("SaldoNaCarteira"),
-                                        result.getDouble("Rendimento"));
+                result.getInt("NumeroConta"),
+                result.getDouble("SaldoNaCarteira"),
+                result.getDouble("Rendimento"));
     }
 }

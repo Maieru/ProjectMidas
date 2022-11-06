@@ -155,6 +155,7 @@ public class InvestimentoDAO implements GenericDAO<Investimento> {
             ResultSet result = pStatement.executeQuery();
             if (result.next()) {
                 investimento = montaObjeto(result);
+                return investimento;
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
@@ -167,7 +168,7 @@ public class InvestimentoDAO implements GenericDAO<Investimento> {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return investimento;
+        return null;
     }
 
     private Investimento montaObjeto(ResultSet result) throws PersistenciaException, SQLException {

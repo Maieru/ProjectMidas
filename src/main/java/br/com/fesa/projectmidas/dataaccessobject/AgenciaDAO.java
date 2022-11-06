@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 
 public class AgenciaDAO implements GenericDAO<Agencia> {
 
-    private String nomeTabela = "MIDAS.TBTIPOINVESTIMENTO";
+    private String nomeTabela = "MIDAS.TBAGENCIA";
 
     @Override
     public List<Agencia> listar() throws PersistenciaException {
@@ -79,7 +79,7 @@ public class AgenciaDAO implements GenericDAO<Agencia> {
             PreparedStatement pStatement = connection.prepareStatement(sql);
 
             pStatement.setString(1, agencia.getLocalizacao());
-            pStatement.setString(2, Double.toString(agencia.getCodigo()));
+            pStatement.setInt(2, agencia.getCodigo());
 
             pStatement.execute();
         } catch (ClassNotFoundException ex) {
@@ -128,16 +128,17 @@ public class AgenciaDAO implements GenericDAO<Agencia> {
     public Agencia listarPorId(Agencia agencia) throws PersistenciaException {
         String sql = String.format("SELECT * FROM %s WHERE NumeroAgencia = ?", nomeTabela);
         Connection connection = null;
-        
+
         try {
             connection = Conexao.getInstance().getConnection();
             PreparedStatement pStatement = connection.prepareStatement(sql);
-            
+
             pStatement.setLong(1, agencia.getCodigo());
-            
+
             ResultSet result = pStatement.executeQuery();
             if (result.next()) {
                 agencia = montaObjeto(result);
+                return agencia;
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
@@ -150,11 +151,11 @@ public class AgenciaDAO implements GenericDAO<Agencia> {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return agencia;
+        return null;
     }
-    
-    private Agencia montaObjeto(ResultSet result) throws SQLException{
+
+    private Agencia montaObjeto(ResultSet result) throws SQLException {
         return new Agencia(result.getInt("NUMEROAGENCIA"),
-                           result.getString("LOCALIZACAO"));
+                result.getString("LOCALIZACAO"));
     }
 }

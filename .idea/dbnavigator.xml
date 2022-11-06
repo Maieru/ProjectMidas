@@ -29,24 +29,12 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="747e0a75-c425-4c1c-91c7-6a2da9ebf9dd">
-      <console name="Apache Derby" type="STANDARD" schema="EMPRESA" session="Main"><![CDATA[insert into TBTRANSACAO (
-    CODIGO,
-    CONTADESTINO,
-    CONTAORIGEM,
-    DATADATRANSACAO,
-    DESCRICAO,
-    PAGOEMCREDITO,
-    TIPOTRANSACAO,
-    VALOR)
+      <console name="Apache Derby" type="STANDARD" schema="EMPRESA" session="Main"><![CDATA[insert into TBAGENCIA (
+    NUMEROAGENCIA,
+    LOCALIZACAO)
 values (
-    :CODIGO,
-    :CONTADESTINO,
-    :CONTAORIGEM,
-    :DATADATRANSACAO,
-    :DESCRICAO,
-    :PAGOEMCREDITO,
-    :TIPOTRANSACAO,
-    :VALOR)
+    :NUMEROAGENCIA,
+    :LOCALIZACAO)
 ;]]></console>
     </connection>
   </component>

@@ -6,18 +6,19 @@ CREATE TABLE MIDAS.tbAgencia (
 );
 
 CREATE TABLE MIDAS.tbContaBanco (
-    NumeroConta         BIGINT          NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    Codigo              BIGINT          NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    NumeroConta         INT             NOT NULL UNIQUE, 
     NumeroAgencia       INTEGER         NOT NULL REFERENCES tbAgencia(NumeroAgencia),
     Senha               VARCHAR(128)    NOT NULL,
     Saldo               DOUBLE          NOT NULL DEFAULT 0,
-    Correntinta         VARCHAR(200)    NOT NULL,
+    Correntista         VARCHAR(200)    NOT NULL,
     CPF                 VARCHAR(15)     NOT NULL
 );
 
 CREATE TABLE MIDAS.tbCartaoCredito (
-    Codigo              BIGINT          PRIMARY KEY,
-    NumeroConta         BIGINT          NOT NULL REFERENCES tbContaBanco(NumeroConta),
-    NumeroCartao        VARCHAR(16)     NOT NULL,
+    Codigo              BIGINT          PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    NumeroConta         INT             NOT NULL REFERENCES tbContaBanco(NumeroConta),
+    NumeroCartao        VARCHAR(16)     NOT NULL UNIQUE,
     Senha               VARCHAR(128)    NOT NULL,
     LimiteCredito       DOUBLE          NOT NULL,
     CreditoUtilizado    DOUBLE          NOT NULL,
@@ -40,8 +41,8 @@ CREATE TABLE MIDAS.tbFatura (
 
 CREATE TABLE MIDAS.tbTransacao (
     Codigo              BIGINT          NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
-    ContaOrigem         BIGINT          NOT NULL REFERENCES tbContaBanco(NumeroConta),
-    ContaDestino        BIGINT          REFERENCES tbContaBanco(NumeroConta),
+    ContaOrigem         INT             NOT NULL REFERENCES tbContaBanco(NumeroConta),
+    ContaDestino        INT             REFERENCES tbContaBanco(NumeroConta),
     DataDaTransacao     TIMESTAMP       NOT NULL,
     Valor               DOUBLE          NOT NULL,
     Descricao           VARCHAR(100)    NOT NULL,
@@ -51,7 +52,7 @@ CREATE TABLE MIDAS.tbTransacao (
 
 CREATE TABLE MIDAS.tbCarteiraInvestimento (
     Codigo              BIGINT          NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
-    NumeroConta         BIGINT          NOT NULL REFERENCES tbContaBanco(NumeroConta),
+    NumeroConta         INT             NOT NULL REFERENCES tbContaBanco(NumeroConta),
     SaldoNaCarteira     DOUBLE          NOT NULL DEFAULT 0,
     Rendimento          DOUBLE          NOT NULL DEFAULT 0
 );
@@ -71,3 +72,7 @@ CREATE TABLE MIDAS.tbInvestimento (
     Data                TIMESTAMP       NOT NULL,
     ValorInvestido      DOUBLE          NOT NULL
 );
+
+INSERT INTO MIDAS.tbAgencia ( NUMEROAGENCIA, LOCALIZACAO)
+VALUES (1, 'Estr. dos Alvarengas, 4001 - Assunção'),
+       (2, 'Estr. dos Alvarengas, 4500 - Assunção');

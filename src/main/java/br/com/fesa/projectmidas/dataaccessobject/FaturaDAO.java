@@ -166,6 +166,7 @@ public class FaturaDAO implements GenericDAO<Fatura> {
             ResultSet result = pStatement.executeQuery();
             if (result.next()) {
                 fatura = montaObjeto(result);
+                return fatura;
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
@@ -178,7 +179,7 @@ public class FaturaDAO implements GenericDAO<Fatura> {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return fatura;
+        return null;
     }
 
     private Fatura montaObjeto(ResultSet result) throws PersistenciaException, SQLException {

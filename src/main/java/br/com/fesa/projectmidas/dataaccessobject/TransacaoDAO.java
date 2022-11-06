@@ -171,6 +171,7 @@ public class TransacaoDAO implements GenericDAO<Transacao> {
             ResultSet result = pStatement.executeQuery();
             if (result.next()) {
                 transacao = montaObjeto(result);
+                return transacao;
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
@@ -183,7 +184,7 @@ public class TransacaoDAO implements GenericDAO<Transacao> {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return transacao;
+        return null;
     }
 
     private Transacao montaObjeto(ResultSet result) throws PersistenciaException, SQLException {
