@@ -9,7 +9,6 @@ import br.com.fesa.projectmidas.model.Agencia;
 import br.com.fesa.projectmidas.model.ContaBancaria;
 import br.com.fesa.projectmidas.negocio.ContaBancariaNegocio;
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
@@ -50,7 +49,7 @@ public class CreateAccountController extends BaseController {
         try {
             Agencia agenciaDaConta = new AgenciaDAO().listarPorId(new Agencia(Integer.parseInt(txtAgencia.getText())));
             Integer numeroConta = new ContaBancariaDAO().getNextNumeroConta();
-            
+
             if (agenciaDaConta == null) {
                 throw new ObjetoInexistenteException("A agencia informada não existe");
             }
@@ -73,5 +72,10 @@ public class CreateAccountController extends BaseController {
             mostraAlerta(AlertType.ERROR, "Erro não esperado!", "Erro não esperado!", "Um erro não esperado ocorreu.");
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, erro);
         }
+    }
+
+    @FXML
+    private void retornar(ActionEvent event) throws IOException {
+        ProjectMidas.setRoot("login");
     }
 }

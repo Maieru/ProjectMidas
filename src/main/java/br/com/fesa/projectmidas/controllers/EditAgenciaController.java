@@ -5,6 +5,7 @@ import static br.com.fesa.projectmidas.controllers.BaseController.filtroInteiros
 import br.com.fesa.projectmidas.exception.ObjetoInvalidoException;
 import br.com.fesa.projectmidas.model.Agencia;
 import br.com.fesa.projectmidas.negocio.AgenciaNegocio;
+import br.com.fesa.projectmidas.negocio.Constantes;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,24 +30,21 @@ public class EditAgenciaController extends BaseController {
     @FXML
     private TextField txtLocalizacao;
 
-    @FXML
-    private void voltar(ActionEvent event) throws IOException {
-        ProjectMidas.setRoot("gerenciarAgencias");
-    }
-    
     public EditAgenciaController() throws IOException {
         super(true, true);
     }
 
     public void initialize() {
         txtAgencia.setTextFormatter(new TextFormatter<Integer>(new IntegerStringConverter(), null, filtroInteiros));
-        Object agenciaEditando = recuperaUserDate();
+        Object agenciaEditando = recuperaUserDate(Constantes.chaveUserDateAgencia);
 
         if (agenciaEditando != null) {
             agenciaSendoEditada = (Agencia)agenciaEditando;
             
             txtAgencia.setText(Integer.toString(agenciaSendoEditada.getCodigo()));
             txtLocalizacao.setText(agenciaSendoEditada.getLocalizacao());
+            
+            apagaUserDate(Constantes.chaveUserDateAgencia);
         }
     }
 
@@ -70,5 +68,10 @@ public class EditAgenciaController extends BaseController {
             mostraAlerta(Alert.AlertType.ERROR, "Erro não esperado!", "Erro não esperado!", "Um erro não esperado ocorreu.");
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, erro);
         }
+    }
+    
+    @FXML
+    private void voltar(ActionEvent event) throws IOException {
+        ProjectMidas.setRoot("gerenciarAgencias");
     }
 }
