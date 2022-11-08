@@ -26,6 +26,9 @@ public class GerenciarAgenciasController extends BaseController {
 
     @FXML
     private Button btnEditar;
+    
+    @FXML
+    private Button btnVoltar;
 
     @FXML
     private TableView tbvAgencias;
@@ -50,6 +53,10 @@ public class GerenciarAgenciasController extends BaseController {
     @FXML
     private void criar(ActionEvent event) throws IOException {
         ProjectMidas.setRoot("editAgencia");
+    }
+    @FXML
+    private void voltar(ActionEvent event) throws IOException {
+        ProjectMidas.setRoot("mainMenu");
     }
 
     @FXML

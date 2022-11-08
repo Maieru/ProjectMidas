@@ -14,8 +14,9 @@
           <TableColumn fx:id="clnLocalizacao" prefWidth="313.0" text="Localização" />
         </columns>
       </TableView>
-      <Button fx:id="btnCriar" layoutX="20.0" layoutY="14.0" mnemonicParsing="false" onAction="#criar" text="Criar" />
-      <Button fx:id="btnEditar" layoutX="86.0" layoutY="14.0" mnemonicParsing="false" onAction="#editar" text="Editar" />
-      <Button fx:id="btnDeletar" layoutX="156.0" layoutY="14.0" mnemonicParsing="false" onAction="#deletar" text="Deletar" />
+      <Button fx:id="btnCriar" layoutX="205.0" layoutY="14.0" mnemonicParsing="false" onAction="#criar" text="Criar" />
+      <Button fx:id="btnEditar" layoutX="271.0" layoutY="14.0" mnemonicParsing="false" onAction="#editar" text="Editar" />
+      <Button fx:id="btnDeletar" layoutX="341.0" layoutY="14.0" mnemonicParsing="false" onAction="#deletar" text="Deletar" />
+      <Button fx:id="btnVoltar" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#voltar" text="&lt;--" />
    </children>
 </AnchorPane>

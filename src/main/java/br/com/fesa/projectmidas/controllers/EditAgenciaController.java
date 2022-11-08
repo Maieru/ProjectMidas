@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.util.converter.IntegerStringConverter;
@@ -21,10 +22,18 @@ public class EditAgenciaController extends BaseController {
 
     @FXML
     private TextField txtAgencia;
+    
+    @FXML
+    private Button btnVoltar;
 
     @FXML
     private TextField txtLocalizacao;
 
+    @FXML
+    private void voltar(ActionEvent event) throws IOException {
+        ProjectMidas.setRoot("gerenciarAgencias");
+    }
+    
     public EditAgenciaController() throws IOException {
         super(true, true);
     }
