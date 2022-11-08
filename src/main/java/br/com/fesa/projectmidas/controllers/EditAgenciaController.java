@@ -23,7 +23,7 @@ public class EditAgenciaController extends BaseController {
 
     @FXML
     private TextField txtAgencia;
-    
+
     @FXML
     private Button btnVoltar;
 
@@ -39,11 +39,11 @@ public class EditAgenciaController extends BaseController {
         Object agenciaEditando = recuperaUserDate(Constantes.chaveUserDateAgencia);
 
         if (agenciaEditando != null) {
-            agenciaSendoEditada = (Agencia)agenciaEditando;
-            
+            agenciaSendoEditada = (Agencia) agenciaEditando;
+
             txtAgencia.setText(Integer.toString(agenciaSendoEditada.getCodigo()));
             txtLocalizacao.setText(agenciaSendoEditada.getLocalizacao());
-            
+
             apagaUserDate(Constantes.chaveUserDateAgencia);
         }
     }
@@ -55,13 +55,9 @@ public class EditAgenciaController extends BaseController {
 
             AgenciaNegocio agenciaNegocio = new AgenciaNegocio(agenciaASerCriada);
             agenciaNegocio.validaESalvaAgencia(agenciaSendoEditada != null);
-            mostraAlerta(Alert.AlertType.INFORMATION, "Agencia Criada com Sucesso!", "Agencia Criada com Sucesso!", "Sua agencia foi criada com sucesso!", (t) -> {
-                try {
-                    ProjectMidas.setRoot("gerenciarAgencias");
-                } catch (IOException ex) {
-                    Logger.getLogger(CreateAccountController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            });
+            mostraAlerta(Alert.AlertType.INFORMATION, "Agencia Salva com Sucesso!", "Agencia Salva com Sucesso!", "Sua Salva foi criada com sucesso!");
+            
+            ProjectMidas.setRoot("gerenciarAgencias");
         } catch (ObjetoInvalidoException erro) {
             mostraAlerta(Alert.AlertType.ERROR, "Erro!", "Erro!", erro.getMessage());
         } catch (Exception erro) {
@@ -69,7 +65,7 @@ public class EditAgenciaController extends BaseController {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, erro);
         }
     }
-    
+
     @FXML
     private void voltar(ActionEvent event) throws IOException {
         ProjectMidas.setRoot("gerenciarAgencias");

@@ -44,10 +44,13 @@ public abstract class BaseController {
             @Override
             public void run() {
                 try {
-                    if (!controllerVerificada.isAutenticado() || (controllerVerificada.permissaoAdministradorNecessaria && !controllerVerificada.isAdmin())) {
+                    Thread.sleep(25);
+                    if ((controllerVerificada.permissaoAdministradorNecessaria && !controllerVerificada.isAdmin()) || !controllerVerificada.isAutenticado()) {
                         ProjectMidas.setRoot("forbidden");
                     }
                 } catch (IOException ex) {
+                    Logger.getLogger(BaseController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (InterruptedException ex) {
                     Logger.getLogger(BaseController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 this.cancel();
