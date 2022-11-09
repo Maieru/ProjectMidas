@@ -9,13 +9,16 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 
-
-public class boletoDeposito extends BaseController{
-      
-    public boletoDeposito() throws IOException {
+/**
+ *
+ * @author 081200048
+ */
+public class pagamentoController extends BaseController {
+    
+    public pagamentoController() throws IOException {
         super(true, false);
     }
     
@@ -23,10 +26,19 @@ public class boletoDeposito extends BaseController{
     private Button btnVoltar;
     
     @FXML
-    private Button btnImprimir;
+    private Button btnConfirmar;
     
-     @FXML
+    @FXML
+    private ChoiceBox cmbSelecaoPagamento;
+    
+    @FXML
     private void voltar(ActionEvent event) throws IOException {
         ProjectMidas.setRoot("mainMenu");
     }
+    
+    @FXML
+    private void confirmar (ActionEvent event) throws IOException{
+        //ProjectMidas.setRoot(cmbSelecaoPagamento.get);
+    }
+    
 }
