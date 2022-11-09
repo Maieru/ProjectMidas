@@ -9,7 +9,8 @@ public enum TipoTransacao {
     TRANSFERENCIA_PIX(2, "Transferência por PIX"),
     TRANSFERENCIA_TED(3, "Transferência por TED"),
     TRANSFERENCIA_DOC(4, "Transferência por DOC"),
-    TRANSFERENCIA_BOLETO(5, "Transferência por Boleto");
+    PAGAMENTO_BOLETO(5, "Pagamento por Boleto"),
+    PAGAMENTO_PIX(6, "Pagamento por PIX");
     
     private Integer codigo;
     private String descricao;
@@ -36,5 +37,10 @@ public enum TipoTransacao {
     
     public static TipoTransacao getById(Integer id){
         return mapa.get(id);
+    }
+
+    @Override
+    public String toString() {
+        return this.getDescricao();
     }
 }

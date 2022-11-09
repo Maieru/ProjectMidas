@@ -79,6 +79,6 @@ public class MainMenuController extends BaseController {
     
     @FXML
     private void handlerTransferencia(ActionEvent event) throws IOException {
-        btnTransferencia.setText("ObaTransf");
+        ProjectMidas.setRoot("selecaoMetodoTransferencia");
     }
 }
