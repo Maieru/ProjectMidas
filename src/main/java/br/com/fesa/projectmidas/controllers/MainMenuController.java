@@ -11,6 +11,18 @@ public class MainMenuController extends BaseController {
 
     @FXML
     private Button btnGerenciarAgencias;
+    
+    @FXML
+    private Button btnInvestimentos;
+    
+    @FXML
+    private Button btnPagamentos;
+    
+    @FXML
+    private Button btnDepositos;
+    
+    @FXML
+    private Button btnTransferencia;
 
     public MainMenuController() throws IOException {
         super(true, false);
@@ -48,5 +60,25 @@ public class MainMenuController extends BaseController {
     
         BaseController.setContaBancariaLogada(null);
         ProjectMidas.setRoot("login");
+    }
+    
+    @FXML
+    private void handlerInvestimentos(ActionEvent event) throws IOException {
+        btnInvestimentos.setText("ObaInve");
+    }
+    
+    @FXML
+    private void handlerPagamentos(ActionEvent event) throws IOException {
+        btnPagamentos.setText("ObaPaga");
+    }
+    
+    @FXML
+    private void handlerDeposito(ActionEvent event) throws IOException {
+        btnDepositos.setText("ObaDepo");
+    }
+    
+    @FXML
+    private void handlerTransferencia(ActionEvent event) throws IOException {
+        btnTransferencia.setText("ObaTransf");
     }
 }
