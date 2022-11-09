@@ -181,7 +181,7 @@ public class ContaBancariaDAO implements GenericDAO<ContaBancaria> {
         return null;
     }
 
-    public boolean listarPorNumeroESenha(ContaBancaria conta) throws PersistenciaException {
+    public ContaBancaria listarPorNumeroESenha(ContaBancaria conta) throws PersistenciaException {
         String sql = String.format("SELECT * FROM %s WHERE NumeroConta=? AND Senha=?", nomeTabela);
         Connection connection = null;
 
@@ -195,7 +195,7 @@ public class ContaBancariaDAO implements GenericDAO<ContaBancaria> {
             ResultSet result = pStatement.executeQuery();
             if (result.next()) {
                 conta = montaObjeto(result);
-                return true;
+                return conta;
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
@@ -208,7 +208,7 @@ public class ContaBancariaDAO implements GenericDAO<ContaBancaria> {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return false;
+        return null;
     }
 
     public Integer getNextNumeroConta() throws PersistenciaException {

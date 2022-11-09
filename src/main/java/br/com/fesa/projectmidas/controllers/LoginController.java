@@ -43,9 +43,10 @@ public class LoginController extends BaseController {
         ContaBancaria conta = new ContaBancaria(Integer.parseInt(txtConta.getText()));
         conta.setSenha(txtSenha.getText());
         ContaBancariaNegocio negocio = new ContaBancariaNegocio(conta);
-
-        if (negocio.validaCredenciais()) {
-            BaseController.setContaBancariaLogada(conta);
+        
+        var contaRetornada = negocio.validaCredenciais();
+        if (contaRetornada != null) {
+            BaseController.setContaBancariaLogada(contaRetornada);
             ProjectMidas.setRoot("mainMenu");
         } else {
             mostraAlerta(Alert.AlertType.ERROR, "Credenciais erradas!", "As credenciais informadas são inválidas", "As credenciais informadas são inválidas");

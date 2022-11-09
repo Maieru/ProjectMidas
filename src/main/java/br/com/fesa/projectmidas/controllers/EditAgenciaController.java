@@ -28,6 +28,7 @@ public class EditAgenciaController extends BaseController {
 
     @FXML
     private TextField txtLocalizacao;
+    
 
     @FXML
     private void voltar(ActionEvent event) throws IOException {

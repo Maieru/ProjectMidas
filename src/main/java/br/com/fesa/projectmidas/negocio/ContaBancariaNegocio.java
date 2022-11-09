@@ -42,7 +42,7 @@ public class ContaBancariaNegocio {
         return true;
     }
     
-    public boolean validaCredenciais() throws ObjetoInvalidoException, PersistenciaException {
+    public ContaBancaria validaCredenciais() throws ObjetoInvalidoException, PersistenciaException {
         this.conta.encriptaSenha();
         
         ContaBancariaDAO dao = new ContaBancariaDAO();
