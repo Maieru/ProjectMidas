@@ -1,0 +1,21 @@
+.primary-button{
+    -fx-background-color:#fcc203;
+    -fx-border-radius:10;
+    -fx-background-radius:10;
+    -fx-effect:dropshadow(gaussian,rgba(0,0,0,0.3),13,0.5,0,0)
+}
+.primary-button:hover{
+    -fx-scale-x:1.05;
+    -fx-scale-y:1.05;
+    -fx-scale-z:1.05;
+}
+.input{
+    -fx-border-radius:10;
+    -fx-background-radius:10;
+    -fx-effect:dropshadow(gaussian,rgba(0,0,0,0.3),13,0.5,0,0)
+}
+.input:focused{
+    -fx-border-color:#fcc203;
+    -fx-outline:0;
+    fx-border-:2;
+}
