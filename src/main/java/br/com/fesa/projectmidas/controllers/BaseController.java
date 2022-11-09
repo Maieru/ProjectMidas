@@ -3,6 +3,10 @@ package br.com.fesa.projectmidas.controllers;
 import br.com.fesa.projectmidas.ProjectMidas;
 import br.com.fesa.projectmidas.model.ContaBancaria;
 import java.io.IOException;
+import java.net.URL;
+import java.util.Dictionary;
+import java.util.Hashtable;
+import java.util.Stack;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.function.Consumer;
@@ -10,6 +14,7 @@ import java.util.function.UnaryOperator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -18,7 +23,9 @@ import javafx.scene.control.TextFormatter.Change;
 import javafx.stage.Stage;
 
 public abstract class BaseController {
-    private static Stage stage;
+
+    private static Dictionary<String, Object> userData = new Hashtable<String, Object>();
+    
     private static ContaBancaria contaBancariaLogada;
     private boolean autenticacaoNecessaria;
     private boolean permissaoAdministradorNecessaria;
@@ -37,10 +44,13 @@ public abstract class BaseController {
             @Override
             public void run() {
                 try {
-                    if (!controllerVerificada.isAutenticado() || (controllerVerificada.permissaoAdministradorNecessaria && !controllerVerificada.isAdmin())) {
+                    Thread.sleep(25);
+                    if ((controllerVerificada.permissaoAdministradorNecessaria && !controllerVerificada.isAdmin()) || !controllerVerificada.isAutenticado()) {
                         ProjectMidas.setRoot("forbidden");
                     }
                 } catch (IOException ex) {
+                    Logger.getLogger(BaseController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (InterruptedException ex) {
                     Logger.getLogger(BaseController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 this.cancel();
@@ -100,19 +110,22 @@ public abstract class BaseController {
         alert.showAndWait().ifPresent(callback);
     }
 
-    protected void adicionaUserDate(Object objeto, ActionEvent event){
-        Node node = (Node)event.getSource();
-        stage = (Stage)node.getScene().getWindow();
-        stage.setUserData(objeto);
+    protected void adicionaUserDate(String chave, Object objetoASerGuardado) {
+        apagaUserDate(chave);
+        userData.put(chave, objetoASerGuardado);
     }
-    
-    protected Object recuperaUserDate(){
-        if (stage == null)
-            return null;
-                    
-        return stage.getUserData();
+
+    protected Object recuperaUserDate(String chave) {
+        Object retorno = userData.get(chave);
+        return retorno;
     }
-    
+
+    protected void apagaUserDate(String chave) {
+        if (userData.get(chave) != null) {
+            userData.remove(chave);
+        }
+    }
+
     protected static UnaryOperator<Change> filtroInteiros = change -> {
         String novoTexto = change.getControlNewText();
         if (novoTexto.matches("-?([0-9][0-9]{0,3})?")) {

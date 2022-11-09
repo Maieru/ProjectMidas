@@ -4,6 +4,7 @@ import br.com.fesa.projectmidas.ProjectMidas;
 import br.com.fesa.projectmidas.dataaccessobject.AgenciaDAO;
 import br.com.fesa.projectmidas.exception.PersistenciaException;
 import br.com.fesa.projectmidas.model.Agencia;
+import br.com.fesa.projectmidas.negocio.Constantes;
 import java.io.IOException;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -62,7 +63,7 @@ public class GerenciarAgenciasController extends BaseController {
     @FXML
     private void editar(ActionEvent event) throws IOException {
         if (tbvAgencias.getSelectionModel().getSelectedItem() != null) {
-            adicionaUserDate(tbvAgencias.getSelectionModel().getSelectedItem(), event);
+            adicionaUserDate(Constantes.chaveUserDateAgencia, tbvAgencias.getSelectionModel().getSelectedItem());
             ProjectMidas.setRoot("editAgencia");
         } else {
             mostraAlerta(Alert.AlertType.INFORMATION, "Selecione uma agencia!", "Selecione uma agencia!", "Para realizar a edição, selecione uma agência na tabela!");
