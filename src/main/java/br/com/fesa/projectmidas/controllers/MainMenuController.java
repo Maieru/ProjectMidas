@@ -2,6 +2,7 @@ package br.com.fesa.projectmidas.controllers;
 
 import br.com.fesa.projectmidas.ProjectMidas;
 import java.io.IOException;
+import java.util.HashSet;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -69,12 +70,12 @@ public class MainMenuController extends BaseController {
     
     @FXML
     private void handlerPagamentos(ActionEvent event) throws IOException {
-        btnPagamentos.setText("ObaPaga");
+        ProjectMidas.setRoot("pagamento");
     }
     
     @FXML
     private void handlerDeposito(ActionEvent event) throws IOException {
-        btnDepositos.setText("ObaDepo");
+        ProjectMidas.setRoot("valorDeposito");
     }
     
     @FXML
