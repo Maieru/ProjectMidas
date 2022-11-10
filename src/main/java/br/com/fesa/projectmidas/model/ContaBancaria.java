@@ -21,6 +21,11 @@ public class ContaBancaria {
         this.numero = numero;
     }
 
+    public ContaBancaria(Integer numero, Agencia agencia) {
+        this.numero = numero;
+        this.agencia = agencia;
+    }
+
     public ContaBancaria(Integer numero, Agencia agencia, String senha, String correntista, String CPF) {
         this.numero = numero;
         this.agencia = agencia;
