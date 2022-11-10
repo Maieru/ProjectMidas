@@ -1,5 +1,5 @@
 .primary-button{
-    -fx-background-color:#fcc203;
+    -fx-background-color:#fcc200;
     -fx-border-radius:10;
     -fx-background-radius:10;
     -fx-effect:dropshadow(gaussian,rgba(0,0,0,0.3),13,0.5,0,0)
@@ -7,7 +7,7 @@
 .primary-button:hover{
     -fx-scale-x:1.05;
     -fx-scale-y:1.05;
-    -fx-scale-z:1.05;
+    -fx-translate-z:0;
 }
 .input{
     -fx-border-radius:10;
@@ -20,4 +20,24 @@
     -fx-border-color:#fcc203;
     -fx-outline:0;
     -fx-border-width:2;
+}
+.text-danger{
+    -fx-text-fill:#ff0000;
+    
+}
+.btnVoltar{
+    -fx-background-color:rgba(0,0,0,0);
+    -fx-background-image: url("back.png");
+    -fx-background-repeat:stretch;
+    -fx-background-size:100%;  
+    opacity: 0.1;
+}
+.btnVoltar:hover{
+     -fx-scale-x:1.05;
+    -fx-scale-y:1.05;
+    -fx-translate-z:0;
+}
+.btnRetonar{
+    -fx-background-color:#fcc200;
+    opacity:0.5;
 }

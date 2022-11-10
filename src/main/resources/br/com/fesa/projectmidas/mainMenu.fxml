@@ -12,7 +12,7 @@
    <children>
       <VBox layoutX="14.0" layoutY="10.0" prefHeight="452.0" prefWidth="166.0">
          <children>
-            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ccca2d;">
+            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fcc200;">
                <children>
                   <Label fx:id="lblMidas" layoutX="6.0" layoutY="83.0" text="MidasProject">
                      <font>
