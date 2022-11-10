@@ -210,6 +210,36 @@ public class ContaBancariaDAO implements GenericDAO<ContaBancaria> {
         }
         return null;
     }
+    
+    public ContaBancaria listarPorNumeroEAgencia(ContaBancaria conta) throws PersistenciaException {
+        String sql = String.format("SELECT * FROM %s WHERE NumeroConta=? AND NumeroAgencia=?", nomeTabela);
+        Connection connection = null;
+
+        try {
+            connection = Conexao.getInstance().getConnection();
+            PreparedStatement pStatement = connection.prepareStatement(sql);
+
+            pStatement.setInt(1, conta.getNumero());
+            pStatement.setInt(2, conta.getAgencia().getCodigo());
+            
+            ResultSet result = pStatement.executeQuery();
+            if (result.next()) {
+                conta = montaObjeto(result);
+                return conta;
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return null;
+    }
 
     public Integer getNextNumeroConta() throws PersistenciaException {
         String sql = String.format("SELECT COALESCE(MAX(NUMEROCONTA) + 1, 1) FROM  %s", nomeTabela);

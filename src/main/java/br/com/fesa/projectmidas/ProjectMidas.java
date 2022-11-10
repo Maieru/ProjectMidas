@@ -19,6 +19,7 @@ public class ProjectMidas extends Application {
         scene = new Scene(loadFXML("login"), 640, 480);
         scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 

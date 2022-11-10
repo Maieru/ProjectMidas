@@ -31,4 +31,11 @@ public class Agencia {
     public void setLocalizacao(String localizacao) {
         this.localizacao = localizacao;
     }
+
+    @Override
+    public String toString() {
+        return this.getCodigo() + " - " + this.getLocalizacao();
+    }
+    
+    
 }
