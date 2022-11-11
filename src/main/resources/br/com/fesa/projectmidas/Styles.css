@@ -41,3 +41,11 @@
     -fx-background-color:#fcc200;
     opacity:0.5;
 }
+
+.sucesso{
+    -fx-background-image: url("success.png");
+    -fx-background-size: 250px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 90%;
+    -fx-background-color:rgba(0,0,0,0);
+}

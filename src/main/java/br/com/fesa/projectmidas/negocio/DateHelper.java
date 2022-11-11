@@ -18,4 +18,8 @@ public final class DateHelper {
     public static LocalDateTime asLocalDateTime(Date date) {
         return Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
+    
+    public static Date asDate(LocalDateTime date){
+        return Date.from(date.atZone(ZoneId.systemDefault()).toInstant());
+    }
 }

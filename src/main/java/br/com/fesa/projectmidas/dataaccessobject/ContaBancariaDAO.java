@@ -86,13 +86,13 @@ public class ContaBancariaDAO implements GenericDAO<ContaBancaria> {
 
     @Override
     public void alterar(ContaBancaria conta) throws PersistenciaException {
-        String sql = String.format("Update %s SET("
+        String sql = String.format("Update %s SET"
                 + "    NUMEROCONTA=?,\n"
-                + "    CORRENTINTA=?,\n"
+                + "    CORRENTISTA=?,\n"
                 + "    CPF=?,\n"
                 + "    NUMEROAGENCIA=?,\n"
                 + "    SALDO=?,\n"
-                + "    SENHA=?)\n"
+                + "    SENHA=?\n"
                 + "    Where CODIGO=?", nomeTabela);
 
         Connection connection = null;

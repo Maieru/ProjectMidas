@@ -57,7 +57,7 @@ public class TransacaoDAO implements GenericDAO<Transacao> {
                 + "    PAGOEMCREDITO,\n"
                 + "    TIPOTRANSACAO,\n"
                 + "    VALOR)\n"
-                + "values(?, ?, ?, ?, ?, ?, ?);", nomeTabela);
+                + "values(?, ?, ?, ?, ?, ?, ?)", nomeTabela);
 
         Connection connection = null;
         try {
@@ -66,7 +66,7 @@ public class TransacaoDAO implements GenericDAO<Transacao> {
 
             pStatement.setInt(1, transacao.getDestino().getNumero());
             pStatement.setInt(2, transacao.getOrigem().getNumero());
-            pStatement.setObject(3, transacao.getDataTransacao());
+            pStatement.setObject(3, DateHelper.asDate(transacao.getDataTransacao()));
             pStatement.setString(4, transacao.getDescricao());
             pStatement.setBoolean(5, transacao.isPagoComCredito());
             pStatement.setInt(6, transacao.getTipoTransacao().getCodigo());
@@ -90,14 +90,14 @@ public class TransacaoDAO implements GenericDAO<Transacao> {
 
     @Override
     public void alterar(Transacao transacao) throws PersistenciaException {
-        String sql = String.format("Update %s SET("
+        String sql = String.format("Update %s SET"
                 + "    CONTADESTINO=?,\n"
                 + "    CONTAORIGEM=?,\n"
                 + "    DATADATRANSACAO=?,\n"
                 + "    DESCRICAO=?,\n"
                 + "    PAGOEMCREDITO=?,\n"
                 + "    TIPOTRANSACAO=?,\n"
-                + "    VALOR=?)"
+                + "    VALOR=?"
                 + "    Where Codigo=?", nomeTabela);
         
         Connection connection = null;

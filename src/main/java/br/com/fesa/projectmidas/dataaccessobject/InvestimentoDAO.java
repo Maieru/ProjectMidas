@@ -50,7 +50,7 @@ public class InvestimentoDAO implements GenericDAO<Investimento> {
                 + "    NUMEROCARTEIRA,\n"
                 + "    TIPOINVESTIMENTO,\n"
                 + "    VALORINVESTIDO)\n"
-                + "values(?, ?, ?, ?);", nomeTabela);
+                + "values(?, ?, ?, ?)", nomeTabela);
 
         Connection connection = null;
         try {
@@ -80,11 +80,11 @@ public class InvestimentoDAO implements GenericDAO<Investimento> {
 
     @Override
     public void alterar(Investimento investimento) throws PersistenciaException {
-        String sql = String.format("Update %s SET("
+        String sql = String.format("Update %s SET"
                 + "    DATA=?,\n"
                 + "    NUMEROCARTEIRA=?,\n"
                 + "    TIPOINVESTIMENTO=?,\n"
-                + "    VALORINVESTIDO=?)\n"
+                + "    VALORINVESTIDO=?\n"
                 + "    Where CODIGO=?", nomeTabela);
 
         Connection connection = null;
