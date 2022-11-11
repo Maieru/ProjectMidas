@@ -36,6 +36,9 @@
                      <cursor>
                         <Cursor fx:constant="TEXT" />
                      </cursor>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
                   </TextField>
                   <Button fx:id="btnConfirmar" mnemonicParsing="false" onAction="#confirmar" styleClass="primary-button" text="Confirmar" textAlignment="CENTER">
                      <VBox.margin>
