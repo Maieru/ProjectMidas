@@ -1,8 +1,13 @@
 package br.com.fesa.projectmidas.model;
 
+import br.com.fesa.projectmidas.dataaccessobject.ContaBancariaDAO;
+import br.com.fesa.projectmidas.dataaccessobject.TransacaoDAO;
+import br.com.fesa.projectmidas.exception.NegocioException;
+import br.com.fesa.projectmidas.exception.PersistenciaException;
 import java.time.LocalDateTime;
 
 public class Transacao {
+
     private Integer codigo;
     private ContaBancaria origem;
     private ContaBancaria destino;
@@ -88,5 +93,48 @@ public class Transacao {
 
     public void setPagoComCredito(boolean pagoComCredito) {
         this.pagoComCredito = pagoComCredito;
+    }
+
+    public boolean transaciona() throws NegocioException, PersistenciaException {
+        switch (this.getTipoTransacao()) {
+            case DEPOSITO:
+                break;
+            case SAQUE:
+                break;
+            case TRANSFERENCIA_PIX:
+            case TRANSFERENCIA_TED:
+            case TRANSFERENCIA_DOC:
+                return fazTransferencia();
+            case PAGAMENTO_BOLETO:
+                break;
+            case PAGAMENTO_PIX:
+                break;
+            default:
+                throw new AssertionError(this.getTipoTransacao().name());
+
+        }
+        
+        return false;
+    }
+    
+    private boolean fazTransferencia() throws NegocioException, PersistenciaException{
+        if (this.getOrigem().getSaldo() < this.getValor()){
+            throw new NegocioException("A conta de origem não possui o saldo suficiente para realizar a transação!");
+        }
+        
+        this.getOrigem().modificaSaldo(-this.getValor());
+        this.getDestino().modificaSaldo(this.getValor());
+        
+        this.setDataTransacao(LocalDateTime.now());
+        this.setDescricao("TRANSF " + this.getDestino().getCorrentista());
+        
+        ContaBancariaDAO daoContaBancaria = new ContaBancariaDAO();
+        TransacaoDAO daoTransacao = new TransacaoDAO();
+        
+        daoContaBancaria.alterar(this.getOrigem());
+        daoContaBancaria.alterar(this.getDestino());
+        daoTransacao.inserir(this);
+        
+        return true;
     }
 }

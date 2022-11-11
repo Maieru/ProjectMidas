@@ -54,7 +54,8 @@ public class SelecaoMetodoTransferenciaController extends BaseController {
 
             Transacao transacaoAtual = new Transacao();
             transacaoAtual.setTipoTransacao(tipoSelecionado);
-
+            transacaoAtual.setOrigem(BaseController.getContaBancariaLogada());
+            
             adicionaUserDate(Constantes.chaveTransferenciaSendoRealizada, transacaoAtual);
             ProjectMidas.setRoot("selecaoValorTransferencia");
         } catch (Exception erro) {

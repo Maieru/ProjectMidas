@@ -52,29 +52,11 @@
 .comboBox:hover{
     -fx-effect:unset;
 }
-.btnDanger{
-    -fx-background-color:#DC3545;
-    -fx-text-fill:white;
-    -fx-border-radius:10;
-    -fx-background-radius:10;
-    -fx-effect:dropshadow(gaussian,rgba(0,0,0,0.3),13,0.5,0,0)    
-}
-.btnDanger:hover{
-    -fx-background-color:#c82333;
-     -fx-scale-x:1.05;
-    -fx-scale-y:1.05;
-    -fx-translate-z:0;
-}
-.btnEdit{
-    -fx-background-color:#007bff;
-    -fx-text-fill:white;
-    -fx-border-radius:10;
-    -fx-background-radius:10;
-    -fx-effect:dropshadow(gaussian,rgba(0,0,0,0.3),13,0.5,0,0)
-}
-.btnEdit:hover{
-    -fx-background-color:#0069d9;
-    -fx-scale-x:1.05;
-    -fx-scale-y:1.05;
-    -fx-translate-z:0;
+
+.sucesso{
+    -fx-background-image: url("success.png");
+    -fx-background-size: 250px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 90%;
+    -fx-background-color:rgba(0,0,0,0);
 }

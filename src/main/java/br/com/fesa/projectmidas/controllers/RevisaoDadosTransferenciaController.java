@@ -1,15 +1,11 @@
 package br.com.fesa.projectmidas.controllers;
 
 import br.com.fesa.projectmidas.ProjectMidas;
-import br.com.fesa.projectmidas.dataaccessobject.AgenciaDAO;
-import br.com.fesa.projectmidas.dataaccessobject.ContaBancariaDAO;
+import br.com.fesa.projectmidas.exception.NegocioException;
 import br.com.fesa.projectmidas.exception.PersistenciaException;
-import br.com.fesa.projectmidas.model.Agencia;
-import br.com.fesa.projectmidas.model.ContaBancaria;
 import br.com.fesa.projectmidas.model.Transacao;
 import br.com.fesa.projectmidas.negocio.Constantes;
 import java.io.IOException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
@@ -53,6 +49,17 @@ public class RevisaoDadosTransferenciaController extends BaseController {
     
     @FXML
     private void confirmar(ActionEvent event) throws IOException {
+        Transacao transferenciaSendoRealizada = (Transacao)recuperaUserDate(Constantes.chaveTransferenciaSendoRealizada);
+        
+        try {
+            transferenciaSendoRealizada.transaciona();
+            ProjectMidas.setRoot("sucesso");
+        } catch (NegocioException ex) {
+            mostraAlerta(Alert.AlertType.ERROR, "Erro no Preenchimento dos Dados", "Os dados informados não ", ex.getMessage());
+        } catch (PersistenciaException ex) {
+            mostraAlerta(Alert.AlertType.ERROR, "Erro não esperado!", "Erro não esperado!", "Um erro não esperado ocorreu.");
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     @FXML

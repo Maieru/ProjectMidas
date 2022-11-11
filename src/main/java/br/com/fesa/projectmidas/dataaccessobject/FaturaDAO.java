@@ -52,7 +52,7 @@ public class FaturaDAO implements GenericDAO<Fatura> {
                 + "    PAGO,\n"
                 + "    VALOR,\n"
                 + "    VENCIMENTO)\n"
-                + "values (?, ?, ?, ?, ?, ?, ?);", nomeTabela);
+                + "values (?, ?, ?, ?, ?, ?, ?)", nomeTabela);
 
         Connection connection = null;
         try {
@@ -85,14 +85,14 @@ public class FaturaDAO implements GenericDAO<Fatura> {
 
     @Override
     public void alterar(Fatura fatura) throws PersistenciaException {
-        String sql = String.format("Update %s SET("
+        String sql = String.format("Update %s SET"
                 + "    DATAINICIO=?,\n"
                 + "    DATATERMINO=?,\n"
                 + "    JUROS=?,\n"
                 + "    CODIGOCARTAO=?,\n"
                 + "    PAGO=?,\n"
                 + "    VALOR=?,\n"
-                + "    VENCIMENTO=?)\n"
+                + "    VENCIMENTO=?\n"
                 + "    Where CODIGO-?", nomeTabela);
 
         Connection connection = null;
