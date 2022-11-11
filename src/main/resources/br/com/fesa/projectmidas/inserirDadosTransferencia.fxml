@@ -22,7 +22,7 @@
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor></Label>
-            <ComboBox fx:id="cmbAgencia" onAction="#atualizarDados" prefHeight="25.0" prefWidth="249.0" styleClass="comboBox" GridPane.rowIndex="1" />
+            <ComboBox fx:id="cmbAgencia" onAction="#atualizarDados" prefHeight="25.0" prefWidth="249.0" GridPane.rowIndex="1" />
          </children>
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

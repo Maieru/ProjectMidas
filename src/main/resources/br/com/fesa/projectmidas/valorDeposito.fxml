@@ -57,16 +57,16 @@
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor></TextField>
+                  <Button fx:id="btnConfirmar" mnemonicParsing="false" onAction="#confirmar" styleClass="primary-button" text="Confirmar" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+                  </Button>
                </children>
             </GridPane>
-            <Button fx:id="btnConfirmar" mnemonicParsing="false" onAction="#confirmar" styleClass="primary-button" text="Confirmar" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
-               <font>
-                  <Font size="14.0" />
-               </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-            </Button>
          </children>
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="700.0" minWidth="10.0" prefWidth="100.0" />
