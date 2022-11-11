@@ -33,13 +33,23 @@
     opacity: 0.1;
 }
 .btnVoltar:hover{
-     -fx-scale-x:1.05;
+    -fx-scale-x:1.05;
     -fx-scale-y:1.05;
     -fx-translate-z:0;
 }
 .btnRetonar{
     -fx-background-color:#fcc200;
     opacity:0.5;
+}
+.comboBox{
+    -fx-border-radius:10;
+    -fx-background-radius:10;
+    -fx-effect:dropshadow(gaussian,rgba(0,0,0,0.3),13,0.5,0,0);
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+.comboBox:hover{
+    -fx-effect:unset;
 }
 
 .sucesso{
