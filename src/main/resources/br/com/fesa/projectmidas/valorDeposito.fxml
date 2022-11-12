@@ -56,17 +56,20 @@
                   <TextField fx:id="txtValorDeposito" maxHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="250.0" styleClass="input" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="TEXT" />
-               </cursor></TextField>
-               </children>
-            </GridPane>
-            <Button fx:id="btnConfirmar" mnemonicParsing="false" onAction="#confirmar" styleClass="primary-button" text="Confirmar" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+               </cursor>
                <font>
                   <Font size="14.0" />
-               </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-            </Button>
+               </font></TextField>
+                  <Button fx:id="btnConfirmar" mnemonicParsing="false" onAction="#confirmar" styleClass="primary-button" text="Confirmar" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+                  </Button>
+               </children>
+            </GridPane>
          </children>
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="700.0" minWidth="10.0" prefWidth="100.0" />

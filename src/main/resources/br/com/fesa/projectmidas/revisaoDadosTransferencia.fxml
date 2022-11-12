@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fesa.projectmidas.controllers.RevisaoDadosTransferenciaController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fesa.projectmidas.controllers.RevisaoDadosTransferenciaController">
    <children>
-      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0">
+      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" stylesheets="@Styles.css">
          <children>
             <GridPane GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
-                  <Label text="Agência:" GridPane.rowIndex="1" />
+                  <Label text="Agência:" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
                   <Label fx:id="lblAgencia" text="Agência" textFill="#7c7c7c" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="20.0" />
@@ -32,7 +38,10 @@
             </GridPane>
             <GridPane GridPane.columnIndex="3" GridPane.rowIndex="3">
                <children>
-                  <Label text="Numero Conta:" GridPane.rowIndex="1" />
+                  <Label text="Numero Conta:" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
                   <Label fx:id="lblConta" text="Número" textFill="#7c7c7c" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="20.0" />
@@ -49,11 +58,23 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
             </GridPane>
-            <Button fx:id="btnConfirmar" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#confirmar" text="Confirmar" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-            <Button fx:id="btnVoltar" mnemonicParsing="false" onAction="#voltar" text="&lt;--" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
+            <Button fx:id="btnConfirmar" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#confirmar" styleClass="primary-button" text="Confirmar" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="5">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <Button fx:id="btnVoltar" mnemonicParsing="false" onAction="#voltar" prefHeight="27.0" prefWidth="27.0" styleClass="btnVoltar" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
             <GridPane GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
-                  <Label text="Correntista" GridPane.rowIndex="1" />
+                  <Label text="Correntista" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
                   <Label fx:id="lblCorrentista" text="Nome" textFill="#7c7c7c" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="20.0" />
@@ -72,7 +93,10 @@
             </GridPane>
             <GridPane GridPane.columnIndex="3" GridPane.rowIndex="4">
                <children>
-                  <Label text="CPF" GridPane.rowIndex="1" />
+                  <Label text="CPF" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
                   <Label fx:id="lblCPF" text="111.111.111-04" textFill="#7c7c7c" GridPane.rowIndex="2">
                      <padding>
                         <Insets left="20.0" />
@@ -91,7 +115,10 @@
             </GridPane>
             <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <Label text="Método" GridPane.rowIndex="1" />
+                  <Label text="Método" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
                   <Label fx:id="lblMetodo" text="Método" textFill="#7c7c7c" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="20.0" />
@@ -110,7 +137,10 @@
             </GridPane>
             <GridPane GridPane.columnIndex="3" GridPane.rowIndex="2">
                <children>
-                  <Label text="Valor" GridPane.rowIndex="1" />
+                  <Label text="Valor" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
                   <Label fx:id="lblValor" text="R$Valor" textFill="#7c7c7c" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="20.0" />

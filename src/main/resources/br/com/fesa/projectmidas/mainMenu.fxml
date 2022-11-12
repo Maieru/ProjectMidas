@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="640.0" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fesa.projectmidas.controllers.MainMenuController">
+<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="640.0" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fesa.projectmidas.controllers.MainMenuController">
    <children>
       <VBox layoutX="14.0" layoutY="10.0" prefHeight="452.0" prefWidth="166.0">
          <children>
             <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fcc200;">
                <children>
-                  <Label fx:id="lblMidas" layoutX="6.0" layoutY="83.0" text="MidasProject">
+                  <Label fx:id="lblMidas" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="83.0" text="MidasProject">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -32,7 +35,13 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label fx:id="lblNome" text="Nome:" GridPane.halignment="CENTER" GridPane.valignment="TOP" />
+                  <Label fx:id="lblNome" text="Nome:" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Label>
                   <GridPane prefHeight="104.0" prefWidth="150.0" GridPane.rowIndex="3">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -44,12 +53,36 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button fx:id="btnConfigs" mnemonicParsing="false" text="Configs" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                        <Button fx:id="btnSair" mnemonicParsing="false" onAction="#sair" text="Sair" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <Button fx:id="btnConfigs" mnemonicParsing="false" text="Configs" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
+                        <Button fx:id="btnSair" mnemonicParsing="false" onAction="#sair" text="Sair" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
                      </children>
                   </GridPane>
-                  <Label fx:id="lblConta" text="Conta//Agência" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-                  <Label fx:id="lblSaldo" text="Saldo" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+                  <Label fx:id="lblConta" text="Conta//Agência" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor></Label>
+                  <Label fx:id="lblSaldo" text="Saldo" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor></Label>
                </children>
             </GridPane>
          </children>
@@ -66,11 +99,41 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="btnGerenciarAgencias" alignment="CENTER" mnemonicParsing="false" onAction="#gerenciarAgencias" prefHeight="25.0" prefWidth="126.0" text="Gerenciar Agências" />
-            <Button fx:id="btnInvestimentos" mnemonicParsing="false" onAction="#handlerInvestimentos" prefHeight="25.0" prefWidth="126.0" text="Investimentos" GridPane.rowIndex="1" />
-            <Button fx:id="btnPagamentos" mnemonicParsing="false" onAction="#handlerPagamentos" prefHeight="25.0" prefWidth="126.0" text="Pagamentos" GridPane.rowIndex="2" />
-            <Button fx:id="btnDepositos" mnemonicParsing="false" onAction="#handlerDeposito" prefHeight="25.0" prefWidth="126.0" text="Depósitos" GridPane.rowIndex="3" />
-            <Button fx:id="btnTransferencia" mnemonicParsing="false" onAction="#handlerTransferencia" prefHeight="25.0" prefWidth="126.0" text="Tranferência" GridPane.rowIndex="4" />
+            <Button fx:id="btnGerenciarAgencias" alignment="CENTER" mnemonicParsing="false" onAction="#gerenciarAgencias" prefHeight="25.0" prefWidth="140.0" text="Gerenciar Agências">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button fx:id="btnInvestimentos" mnemonicParsing="false" onAction="#handlerInvestimentos" prefHeight="25.0" prefWidth="140.0" text="Investimentos" GridPane.rowIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button fx:id="btnPagamentos" mnemonicParsing="false" onAction="#handlerPagamentos" prefHeight="25.0" prefWidth="140.0" text="Pagamentos" GridPane.rowIndex="2">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button fx:id="btnDepositos" mnemonicParsing="false" onAction="#handlerDeposito" prefHeight="25.0" prefWidth="140.0" text="Depósitos" GridPane.rowIndex="3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button fx:id="btnTransferencia" mnemonicParsing="false" onAction="#handlerTransferencia" prefHeight="25.0" prefWidth="140.0" text="Tranferência" GridPane.rowIndex="4">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
          </children>
       </GridPane>
    </children>
