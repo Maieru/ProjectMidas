@@ -53,6 +53,7 @@ public class RevisaoDadosTransferenciaController extends BaseController {
         
         try {
             transferenciaSendoRealizada.transaciona();
+            apagaUserDate(Constantes.chaveTransferenciaSendoRealizada);
             ProjectMidas.setRoot("sucesso");
         } catch (NegocioException ex) {
             mostraAlerta(Alert.AlertType.ERROR, "Erro no Preenchimento dos Dados", "Os dados informados não ", ex.getMessage());
