@@ -28,8 +28,8 @@ public class SelecaoValorTransferenciaController extends BaseController {
     @FXML
     private Button btnConfirmar;
 
-    @FXML
-    private Button btnVoltar;
+        @FXML
+        private Button btnVoltar;
 
     public SelecaoValorTransferenciaController() throws IOException {
         super(true, false);

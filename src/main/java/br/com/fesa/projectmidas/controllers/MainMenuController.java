@@ -70,7 +70,7 @@ public class MainMenuController extends BaseController {
     
     @FXML
     private void handlerPagamentos(ActionEvent event) throws IOException {
-        ProjectMidas.setRoot("pagamento");
+        ProjectMidas.setRoot("selecaoMetodoPagamento");
     }
     
     @FXML

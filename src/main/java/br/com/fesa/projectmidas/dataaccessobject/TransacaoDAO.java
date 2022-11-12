@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +65,12 @@ public class TransacaoDAO implements GenericDAO<Transacao> {
             connection = Conexao.getInstance().getConnection();
             PreparedStatement pStatement = connection.prepareStatement(sql);
 
-            pStatement.setInt(1, transacao.getDestino().getNumero());
+            if (transacao.getDestino() != null) {
+                pStatement.setInt(1, transacao.getDestino().getNumero());
+            }else{
+                pStatement.setNull(1, Types.INTEGER);
+            }
+            
             pStatement.setInt(2, transacao.getOrigem().getNumero());
             pStatement.setObject(3, DateHelper.asDate(transacao.getDataTransacao()));
             pStatement.setString(4, transacao.getDescricao());
@@ -99,7 +105,7 @@ public class TransacaoDAO implements GenericDAO<Transacao> {
                 + "    TIPOTRANSACAO=?,\n"
                 + "    VALOR=?"
                 + "    Where Codigo=?", nomeTabela);
-        
+
         Connection connection = null;
         try {
             connection = Conexao.getInstance().getConnection();
@@ -113,7 +119,7 @@ public class TransacaoDAO implements GenericDAO<Transacao> {
             pStatement.setInt(6, transacao.getTipoTransacao().getCodigo());
             pStatement.setDouble(7, transacao.getValor());
             pStatement.setInt(8, transacao.getCodigo());
-            
+
             pStatement.execute();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);

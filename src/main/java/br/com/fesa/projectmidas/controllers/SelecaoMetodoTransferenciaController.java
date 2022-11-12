@@ -56,7 +56,9 @@ public class SelecaoMetodoTransferenciaController extends BaseController {
             transacaoAtual.setTipoTransacao(tipoSelecionado);
             transacaoAtual.setOrigem(BaseController.getContaBancariaLogada());
             
+            adicionaUserDate(Constantes.tipoTransacaoSendoRealizado, tipoSelecionado);
             adicionaUserDate(Constantes.chaveTransferenciaSendoRealizada, transacaoAtual);
+            
             ProjectMidas.setRoot("selecaoValorTransferencia");
         } catch (Exception erro) {
             mostraAlerta(Alert.AlertType.ERROR, "Erro não esperado!", "Erro não esperado!", "Um erro não esperado ocorreu.");

@@ -106,35 +106,60 @@ public class Transacao {
             case TRANSFERENCIA_DOC:
                 return fazTransferencia();
             case PAGAMENTO_BOLETO:
-                break;
             case PAGAMENTO_PIX:
-                break;
+                return fazPagamento();
             default:
                 throw new AssertionError(this.getTipoTransacao().name());
 
         }
-        
+
         return false;
     }
-    
-    private boolean fazTransferencia() throws NegocioException, PersistenciaException{
-        if (this.getOrigem().getSaldo() < this.getValor()){
+
+    private boolean fazTransferencia() throws NegocioException, PersistenciaException {
+        if (this.getOrigem().getSaldo() < this.getValor()) {
             throw new NegocioException("A conta de origem não possui o saldo suficiente para realizar a transação!");
         }
-        
+
         this.getOrigem().modificaSaldo(-this.getValor());
         this.getDestino().modificaSaldo(this.getValor());
-        
+
         this.setDataTransacao(LocalDateTime.now());
         this.setDescricao("TRANSF " + this.getDestino().getCorrentista());
-        
+
         ContaBancariaDAO daoContaBancaria = new ContaBancariaDAO();
         TransacaoDAO daoTransacao = new TransacaoDAO();
-        
+
         daoContaBancaria.alterar(this.getOrigem());
         daoContaBancaria.alterar(this.getDestino());
         daoTransacao.inserir(this);
-        
+
+        return true;
+    }
+
+    private boolean fazPagamento() throws NegocioException, PersistenciaException {
+        if (this.getOrigem().getSaldo() < this.getValor()) {
+            throw new NegocioException("A conta de origem não possui o saldo suficiente para realizar a transação!");
+        }
+        ContaBancariaDAO daoContaBancaria = new ContaBancariaDAO();
+
+        this.getOrigem().modificaSaldo(-this.getValor());
+
+        if (this.getDestino() != null) {
+            this.getDestino().modificaSaldo(this.getValor());
+            this.setDescricao("PAGTO " + this.getDestino().getCorrentista());
+            daoContaBancaria.alterar(this.getDestino());
+        } else {
+            this.setDescricao("PAGTO EXTERNO");
+        }
+
+        this.setDataTransacao(LocalDateTime.now());
+
+        TransacaoDAO daoTransacao = new TransacaoDAO();
+
+        daoContaBancaria.alterar(this.getOrigem());
+        daoTransacao.inserir(this);
+
         return true;
     }
 }

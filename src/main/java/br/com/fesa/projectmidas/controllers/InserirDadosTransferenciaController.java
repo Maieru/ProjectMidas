@@ -73,12 +73,11 @@ public class InserirDadosTransferenciaController extends BaseController {
             } else if (contaDestino.getNumero() == BaseController.getContaBancariaLogada().getNumero()) {
                 mostraAlerta(Alert.AlertType.ERROR, "Conta Destino Inválida!", "Conta Destino Inválida!", "Não é possivel realizar uma transferência para sua conta.");
                 return;
-
             }
 
             transacaoAtual.setDestino(contaDestino);
             adicionaUserDate(Constantes.chaveTransferenciaSendoRealizada, transacaoAtual);
-            ProjectMidas.setRoot("revisaoDadosTransferencia");
+            ProjectMidas.setRoot("revisaoDadosTransacao");
         } catch (Exception erro) {
             mostraAlerta(Alert.AlertType.ERROR, "Erro não esperado!", "Erro não esperado!", "Um erro não esperado ocorreu.");
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, erro);
