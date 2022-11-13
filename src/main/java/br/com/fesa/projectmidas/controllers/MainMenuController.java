@@ -23,6 +23,9 @@ public class MainMenuController extends BaseController {
     private Button btnDepositos;
     
     @FXML
+    private Button btnExtrato;
+    
+    @FXML
     private Button btnTransferencia;
 
     public MainMenuController() throws IOException {
@@ -81,5 +84,10 @@ public class MainMenuController extends BaseController {
     @FXML
     private void handlerTransferencia(ActionEvent event) throws IOException {
         ProjectMidas.setRoot("selecaoMetodoTransferencia");
+    }
+    
+    @FXML
+    private void extrato(ActionEvent event) throws IOException {
+        ProjectMidas.setRoot("extrato");
     }
 }

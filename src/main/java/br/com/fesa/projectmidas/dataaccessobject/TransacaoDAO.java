@@ -67,10 +67,10 @@ public class TransacaoDAO implements GenericDAO<Transacao> {
 
             if (transacao.getDestino() != null) {
                 pStatement.setInt(1, transacao.getDestino().getNumero());
-            }else{
+            } else {
                 pStatement.setNull(1, Types.INTEGER);
             }
-            
+
             pStatement.setInt(2, transacao.getOrigem().getNumero());
             pStatement.setObject(3, DateHelper.asDate(transacao.getDataTransacao()));
             pStatement.setString(4, transacao.getDescricao());
@@ -193,10 +193,39 @@ public class TransacaoDAO implements GenericDAO<Transacao> {
         return null;
     }
 
+    public List<Transacao> listarPorConta(ContaBancaria conta) throws PersistenciaException {
+        String sql = String.format("SELECT * FROM %s WHERE ContaOrigem=?", nomeTabela);
+        Connection connection = null;
+        List<Transacao> transacoes = new ArrayList();
+
+        try {
+            connection = Conexao.getInstance().getConnection();
+            PreparedStatement pStatement = connection.prepareStatement(sql);
+
+            pStatement.setLong(1, conta.getNumero());
+
+            ResultSet result = pStatement.executeQuery();
+            while (result.next()) {
+                transacoes.add(montaObjeto(result));
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return transacoes;
+    }
+
     private Transacao montaObjeto(ResultSet result) throws PersistenciaException, SQLException {
         ContaBancariaDAO daoContaBancaria = new ContaBancariaDAO();
-        ContaBancaria origem = daoContaBancaria.listarPorId(new ContaBancaria(result.getInt("ContaOrigem")));
-        ContaBancaria destino = daoContaBancaria.listarPorId(new ContaBancaria(result.getInt("ContaDestino")));
+        ContaBancaria origem = daoContaBancaria.listarPorNumero(new ContaBancaria(result.getInt("ContaOrigem")));
+        ContaBancaria destino = daoContaBancaria.listarPorNumero(new ContaBancaria(result.getInt("ContaDestino")));
 
         return new Transacao(result.getInt("Codigo"),
                 origem,
