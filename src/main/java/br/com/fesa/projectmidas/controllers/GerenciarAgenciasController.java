@@ -48,13 +48,14 @@ public class GerenciarAgenciasController extends BaseController {
         clnCodigo.setCellValueFactory(new PropertyValueFactory<Agencia, Integer>("codigo"));
         clnLocalizacao.setCellValueFactory(new PropertyValueFactory<Agencia, String>("localizacao"));
 
-        setItensTableView();
+        setItensTableView(tbvAgencias, new AgenciaDAO().listar());
     }
 
     @FXML
     private void criar(ActionEvent event) throws IOException {
         ProjectMidas.setRoot("editAgencia");
     }
+    
     @FXML
     private void voltar(ActionEvent event) throws IOException {
         ProjectMidas.setRoot("mainMenu");
@@ -76,16 +77,9 @@ public class GerenciarAgenciasController extends BaseController {
             AgenciaDAO dao = new AgenciaDAO();
             dao.remover((Agencia) tbvAgencias.getSelectionModel().getSelectedItem());
 
-            setItensTableView();
+            setItensTableView(tbvAgencias, dao.listar());
         } else {
             mostraAlerta(Alert.AlertType.INFORMATION, "Selecione uma agencia!", "Selecione uma agencia!", "Para realizar a exclusão, selecione uma agência na tabela!");
         }
-    }
-
-    private void setItensTableView() throws PersistenciaException {
-        List<Agencia> agencias = new AgenciaDAO().listar();
-        var teste = FXCollections.observableList(agencias);
-
-        tbvAgencias.setItems(teste);
     }
 }

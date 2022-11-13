@@ -1,11 +1,15 @@
 package br.com.fesa.projectmidas.controllers;
 
 import br.com.fesa.projectmidas.ProjectMidas;
+import br.com.fesa.projectmidas.dataaccessobject.AgenciaDAO;
+import br.com.fesa.projectmidas.exception.PersistenciaException;
+import br.com.fesa.projectmidas.model.Agencia;
 import br.com.fesa.projectmidas.model.ContaBancaria;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Dictionary;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Stack;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -13,19 +17,21 @@ import java.util.function.Consumer;
 import java.util.function.UnaryOperator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextFormatter.Change;
 import javafx.stage.Stage;
 
 public abstract class BaseController {
 
     private static Dictionary<String, Object> userData = new Hashtable<String, Object>();
-    
+
     private static ContaBancaria contaBancariaLogada;
     private boolean autenticacaoNecessaria;
     private boolean permissaoAdministradorNecessaria;
@@ -124,6 +130,10 @@ public abstract class BaseController {
         if (userData.get(chave) != null) {
             userData.remove(chave);
         }
+    }
+
+    protected <E> void setItensTableView(TableView table, List<E> itens) throws PersistenciaException {
+        table.setItems(FXCollections.observableList(itens));
     }
 
     protected static UnaryOperator<Change> filtroInteiros = change -> {

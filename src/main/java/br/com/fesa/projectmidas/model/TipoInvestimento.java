@@ -61,4 +61,9 @@ public class TipoInvestimento {
     public void setValorMinimo(double valorMinimo) {
         this.valorMinimo = valorMinimo;
     }
+
+    @Override
+    public String toString() {
+        return getSigla() + " - " + getNome();
+    }
 }

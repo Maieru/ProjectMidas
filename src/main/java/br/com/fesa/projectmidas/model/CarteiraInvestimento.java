@@ -40,8 +40,12 @@ public class CarteiraInvestimento {
         return saldo;
     }
 
-    public void setSaldo(double saldo) {
+    private void setSaldo(double saldo) {
         this.saldo = saldo;
+    }
+    
+    public void modificaSaldo(double valorASerAdicionado){
+        this.saldo += valorASerAdicionado;
     }
 
     public double getRendimento() {
@@ -50,5 +54,13 @@ public class CarteiraInvestimento {
 
     public void setRendimento(double rendimento) {
         this.rendimento = rendimento;
+    }
+    
+    public void modificaRendimento (Investimento investimento){
+        double saldoOriginal = this.getSaldo();
+        double rendimentoOriginal = this.getRendimento();
+        double totalInvestido = saldoOriginal + investimento.getValorInvestido();
+        
+        this.setRendimento((saldoOriginal / totalInvestido) * rendimentoOriginal + (investimento.getValorInvestido() / totalInvestido) * investimento.getTipo().getRendimentos());
     }
 }

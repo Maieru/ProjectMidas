@@ -76,3 +76,7 @@ CREATE TABLE MIDAS.tbInvestimento (
 INSERT INTO MIDAS.tbAgencia ( NUMEROAGENCIA, LOCALIZACAO)
 VALUES (1, 'Estr. dos Alvarengas, 4001 - Assunção'),
        (2, 'Estr. dos Alvarengas, 4500 - Assunção');
+
+INSERT INTO MIDAS.TBTIPOINVESTIMENTO (NOME, RENDIMENTO, VALORMINIMO, SIGLA)
+VALUES ('Tesouro Préfixado', 0.0003407, 30.68, 'TDP'),
+       ('Tesouro SELIC', 0.0003539, 124.02, 'TDS');

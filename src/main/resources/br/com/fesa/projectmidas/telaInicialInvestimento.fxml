@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fesa.projectmidas.controllers.TelaInicialInvestimentoController">
+   <children>
+      <GridPane alignment="CENTER_RIGHT" layoutX="14.0" layoutY="266.0" prefHeight="200.0" prefWidth="209.0" style="-fx-background-color: #fcc200; -fx-border-color: black;">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.0" minWidth="10.0" prefWidth="109.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="98.0" minWidth="10.0" prefWidth="98.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label alignment="TOP_RIGHT" prefHeight="17.0" prefWidth="106.0" text="Saldo Na Carteira" />
+            <Label fx:id="lblSaldo" alignment="TOP_LEFT" prefHeight="17.0" prefWidth="106.0" text="SALDO" GridPane.columnIndex="1" />
+            <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="106.0" text="Rendimento Diario" textAlignment="RIGHT" GridPane.rowIndex="1" />
+            <Label fx:id="lblRendimento" alignment="TOP_LEFT" prefHeight="17.0" prefWidth="106.0" text="RENDIMENTO CALCULADO" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="106.0" text="Taxa Rendimento" textAlignment="RIGHT" GridPane.rowIndex="2" />
+            <Label fx:id="lblRendimentoPorcentagem" alignment="TOP_LEFT" prefHeight="17.0" prefWidth="106.0" text="\%Rendimento" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         </children>
+      </GridPane>
+      <Button fx:id="btnVoltar" layoutX="50.0" layoutY="50.0" mnemonicParsing="false" onAction="#voltar" prefHeight="27.0" prefWidth="27.0" styleClass="btnVoltar" stylesheets="@Styles.css">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="btnNovoInvestimento" layoutX="29.0" layoutY="149.0" mnemonicParsing="false" onAction="#novoInvestimento" prefHeight="25.0" prefWidth="180.0" text="Novo Investimento" />
+      <TableView fx:id="tbvInvestimentos" layoutX="234.0" layoutY="50.0" prefHeight="416.0" prefWidth="392.0">
+        <columns>
+          <TableColumn fx:id="clnNome" prefWidth="124.0" text="Nome Investimento" />
+          <TableColumn fx:id="clnValor" prefWidth="96.0" text="Valor Investido" />
+            <TableColumn fx:id="clnData" prefWidth="75.0" text="Data" />
+            <TableColumn fx:id="clnRentabilidade" prefWidth="96.0" text="Rentabilidade" />
+        </columns>
+      </TableView>
+   </children>
+</Pane>

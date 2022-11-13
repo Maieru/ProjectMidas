@@ -3,11 +3,15 @@ package br.com.fesa.projectmidas.model;
 import java.time.LocalDateTime;
 
 public class Investimento {
+
     private Integer codigo;
     private CarteiraInvestimento carteira;
     private TipoInvestimento tipo;
     private LocalDateTime data;
     private double valorInvestido;
+
+    private String nomeFormatado;
+    private double rendimento;
 
     public Investimento() {
     }
@@ -18,6 +22,9 @@ public class Investimento {
         this.tipo = tipo;
         this.data = data;
         this.valorInvestido = valorInvestido;
+
+        this.nomeFormatado = this.getTipo().getSigla() + " - " + this.getTipo().getNome();
+        this.rendimento = this.getTipo().getRendimentos();
     }
 
     public Integer getCodigo() {
@@ -58,5 +65,13 @@ public class Investimento {
 
     public void setValorInvestido(double valorInvestido) {
         this.valorInvestido = valorInvestido;
+    }
+
+    public String getNomeFormatado() {
+        return nomeFormatado;
+    }
+
+    public String getRendimento() {
+        return String.format("%.5f", rendimento ) + "%";
     }
 }

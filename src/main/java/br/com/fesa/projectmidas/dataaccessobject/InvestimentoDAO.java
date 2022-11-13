@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -47,7 +48,7 @@ public class InvestimentoDAO implements GenericDAO<Investimento> {
     @Override
     public void inserir(Investimento investimento) throws PersistenciaException {
         String sql = String.format("insert into %s (DATA,\n"
-                + "    NUMEROCARTEIRA,\n"
+                + "    CODIGOCARTEIRA,\n"
                 + "    TIPOINVESTIMENTO,\n"
                 + "    VALORINVESTIDO)\n"
                 + "values(?, ?, ?, ?)", nomeTabela);
@@ -57,7 +58,7 @@ public class InvestimentoDAO implements GenericDAO<Investimento> {
             connection = Conexao.getInstance().getConnection();
             PreparedStatement pStatement = connection.prepareStatement(sql);
 
-            pStatement.setObject(1, investimento.getData());
+            pStatement.setObject(1, DateHelper.asDate(investimento.getData()));
             pStatement.setInt(2, investimento.getCarteira().getCodigo());
             pStatement.setInt(3, investimento.getTipo().getCodigo());
             pStatement.setDouble(4, investimento.getValorInvestido());
@@ -82,7 +83,7 @@ public class InvestimentoDAO implements GenericDAO<Investimento> {
     public void alterar(Investimento investimento) throws PersistenciaException {
         String sql = String.format("Update %s SET"
                 + "    DATA=?,\n"
-                + "    NUMEROCARTEIRA=?,\n"
+                + "    CODIGOCARTEIRA=?,\n"
                 + "    TIPOINVESTIMENTO=?,\n"
                 + "    VALORINVESTIDO=?\n"
                 + "    Where CODIGO=?", nomeTabela);
@@ -92,7 +93,7 @@ public class InvestimentoDAO implements GenericDAO<Investimento> {
             connection = Conexao.getInstance().getConnection();
             PreparedStatement pStatement = connection.prepareStatement(sql);
 
-            pStatement.setObject(1, investimento.getData());
+            pStatement.setObject(1, DateHelper.asDate(investimento.getData()));
             pStatement.setInt(2, investimento.getCarteira().getCodigo());
             pStatement.setInt(3, investimento.getTipo().getCodigo());
             pStatement.setDouble(4, investimento.getValorInvestido());
@@ -171,6 +172,34 @@ public class InvestimentoDAO implements GenericDAO<Investimento> {
         return null;
     }
 
+    public List<Investimento> listarPorCarteira(CarteiraInvestimento carteira) throws PersistenciaException {
+        List<Investimento> investimentos = new ArrayList();
+        String sql = String.format("SELECT * FROM %s WHERE CodigoCarteira=?", nomeTabela);
+        Connection connection = null;
+        try {
+            connection = Conexao.getInstance().getConnection();
+            PreparedStatement pStatement = connection.prepareStatement(sql);
+            
+            pStatement.setInt(1, carteira.getCodigo());
+            
+            ResultSet result = pStatement.executeQuery();
+            while (result.next()) {
+                investimentos.add(montaObjeto(result));
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return investimentos;
+    }
+    
     private Investimento montaObjeto(ResultSet result) throws PersistenciaException, SQLException {
         CarteiraInvestimento cartaoCredito = new CarteiraInvestimentoDAO().listarPorId(new CarteiraInvestimento(result.getInt("CodigoCarteira")));
         TipoInvestimento tipoInvestimento = new TipoInvestimentoDAO().listarPorId(new TipoInvestimento(result.getInt("TipoInvestimento")));

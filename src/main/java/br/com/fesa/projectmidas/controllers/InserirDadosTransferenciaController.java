@@ -99,6 +99,9 @@ public class InserirDadosTransferenciaController extends BaseController {
                     txtCPF.setText("");
                     txtCorrentista.setText("");
                 }
+            } else {
+                txtCPF.setText("");
+                txtCorrentista.setText("");
             }
         } catch (NumberFormatException erro) {
 

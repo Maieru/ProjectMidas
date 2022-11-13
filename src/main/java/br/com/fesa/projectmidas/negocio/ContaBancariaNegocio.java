@@ -1,8 +1,10 @@
 package br.com.fesa.projectmidas.negocio;
 
+import br.com.fesa.projectmidas.dataaccessobject.CarteiraInvestimentoDAO;
 import br.com.fesa.projectmidas.dataaccessobject.ContaBancariaDAO;
 import br.com.fesa.projectmidas.exception.ObjetoInvalidoException;
 import br.com.fesa.projectmidas.exception.PersistenciaException;
+import br.com.fesa.projectmidas.model.CarteiraInvestimento;
 import br.com.fesa.projectmidas.model.ContaBancaria;
 
 public class ContaBancariaNegocio {
@@ -36,8 +38,11 @@ public class ContaBancariaNegocio {
         
         this.conta.encriptaSenha();
         
-        ContaBancariaDAO dao = new ContaBancariaDAO();
-        dao.inserir(conta);
+        ContaBancariaDAO daoConta = new ContaBancariaDAO();
+        daoConta.inserir(conta);
+        
+        CarteiraInvestimentoDAO daoCarteira = new CarteiraInvestimentoDAO();
+        daoCarteira.inserir(new CarteiraInvestimento(0, conta.getNumero(), 0, 0));
         
         return true;
     }

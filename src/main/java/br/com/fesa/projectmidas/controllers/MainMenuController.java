@@ -65,7 +65,7 @@ public class MainMenuController extends BaseController {
     
     @FXML
     private void handlerInvestimentos(ActionEvent event) throws IOException {
-        btnInvestimentos.setText("ObaInve");
+        ProjectMidas.setRoot("telaInicialInvestimento");
     }
     
     @FXML

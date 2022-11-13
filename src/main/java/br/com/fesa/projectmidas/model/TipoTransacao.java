@@ -10,7 +10,9 @@ public enum TipoTransacao {
     TRANSFERENCIA_TED(3, "Transferência por TED"),
     TRANSFERENCIA_DOC(4, "Transferência por DOC"),
     PAGAMENTO_BOLETO(5, "Pagamento por Boleto"),
-    PAGAMENTO_PIX(6, "Pagamento por PIX");
+    PAGAMENTO_PIX(6, "Pagamento por PIX"),
+    INVESTIMENTO(7, "Investimento"),
+    RENDIMENTO_INVESTIMENTO(8, "Rendimentos de Investimento");
     
     private Integer codigo;
     private String descricao;
