@@ -7,10 +7,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="640.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="br.com.fesa.projectmidas.controllers.ExtratoController">
+<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fesa.projectmidas.controllers.ExtratoController">
    <children>
-      <TableView fx:id="tbvTransacoes" layoutX="17.0" layoutY="85.0" prefHeight="163.0" prefWidth="606.0">
+      <TableView fx:id="tbvTransacoes" layoutX="17.0" layoutY="279.0" prefHeight="187.0" prefWidth="606.0">
          <columns>
             <TableColumn fx:id="clnTipo" prefWidth="144.0" text="Tipo" />
             <TableColumn fx:id="clnData" prefWidth="132.0" text="Data" />
@@ -23,7 +22,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <BarChart fx:id="bchGastosUltimosMeses" layoutX="17.0" layoutY="256.0" prefHeight="210.0" prefWidth="606.0" titleSide="BOTTOM">
+      <BarChart fx:id="bchGastosUltimosMeses" layoutX="17.0" layoutY="77.0" prefHeight="210.0" prefWidth="606.0" titleSide="BOTTOM">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>

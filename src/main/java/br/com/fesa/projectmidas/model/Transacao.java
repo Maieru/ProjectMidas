@@ -141,7 +141,9 @@ public class Transacao {
         if (this.getOrigem().getSaldo() < this.getValor()) {
             throw new NegocioException("A conta de origem não possui o saldo suficiente para realizar a transação!");
         }
+
         ContaBancariaDAO daoContaBancaria = new ContaBancariaDAO();
+        TransacaoDAO daoTransacao = new TransacaoDAO();
 
         this.getOrigem().modificaSaldo(-this.getValor());
 
@@ -149,13 +151,20 @@ public class Transacao {
             this.getDestino().modificaSaldo(this.getValor());
             this.setDescricao("PAGTO " + this.getDestino().getCorrentista());
             daoContaBancaria.alterar(this.getDestino());
+
+            Transacao transacaoContaRecebe = new Transacao();
+            transacaoContaRecebe.setDataTransacao(LocalDateTime.now());
+            transacaoContaRecebe.setDescricao(getDescricao());
+            transacaoContaRecebe.setOrigem(getDestino());
+            transacaoContaRecebe.setDestino(getOrigem());
+            transacaoContaRecebe.setTipoTransacao(TipoTransacao.DEPOSITO);
+            transacaoContaRecebe.setValor(getValor());
+            daoTransacao.inserir(transacaoContaRecebe);
         } else {
             this.setDescricao("PAGTO EXTERNO");
         }
 
         this.setDataTransacao(LocalDateTime.now());
-
-        TransacaoDAO daoTransacao = new TransacaoDAO();
 
         daoContaBancaria.alterar(this.getOrigem());
         daoTransacao.inserir(this);
