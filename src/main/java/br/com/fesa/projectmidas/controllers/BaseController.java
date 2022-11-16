@@ -73,7 +73,7 @@ public abstract class BaseController {
     }
 
     public boolean isAdmin() {
-        return true;
+        return getContaBancariaLogada().getCorrentista().equals("Administrador");
     }
 
     public static ContaBancaria getContaBancariaLogada() {

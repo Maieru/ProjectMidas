@@ -12,7 +12,8 @@ public enum TipoTransacao {
     PAGAMENTO_BOLETO(5, "Pagamento por Boleto"),
     PAGAMENTO_PIX(6, "Pagamento por PIX"),
     INVESTIMENTO(7, "Investimento"),
-    RENDIMENTO_INVESTIMENTO(8, "Rendimentos de Investimento");
+    RENDIMENTO_INVESTIMENTO(8, "Rendimentos de Investimento"),
+    RENDIMENTO_SELIC(9, "Rendimento SELIC");
     
     private Integer codigo;
     private String descricao;

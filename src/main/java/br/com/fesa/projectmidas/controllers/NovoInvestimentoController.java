@@ -109,6 +109,11 @@ public class NovoInvestimentoController extends BaseController {
                 return;
             }
 
+            if (tipoSelecionado.getValorMinimo() > valor) {
+                mostraAlerta(Alert.AlertType.ERROR, "O valor inserido é menor que o valor minimo!", "O valor inserido é menor que o valor minimo!", "O valor inserido é menor que o valor minimo!");
+                return;
+            }
+            
             if (valor > conta.getSaldo()) {
                 mostraAlerta(Alert.AlertType.ERROR, "Saldo na conta insuficiente!", "Saldo na conta insuficiente!", "Saldo na conta insuficiente!");
                 return;
