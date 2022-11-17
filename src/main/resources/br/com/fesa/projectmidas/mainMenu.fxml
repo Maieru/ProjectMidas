@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
@@ -22,11 +23,16 @@
          <children>
             <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fcc200;">
                <children>
-                  <Label fx:id="lblMidas" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="83.0" text="MidasProject">
+                  <Label fx:id="lblMidas" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="20.0" text="MidasProject">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
+                  <ImageView fitHeight="143.0" fitWidth="128.0" layoutX="19.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@moeda%20girando.gif" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
             <GridPane prefHeight="252.0" prefWidth="147.0">
@@ -45,7 +51,7 @@
                         <Font size="16.0" />
                      </font>
                      <cursor>
-                        <Cursor fx:constant="HAND" />
+                        <Cursor fx:constant="TEXT" />
                      </cursor></Label>
                   <GridPane prefHeight="104.0" prefWidth="150.0" GridPane.rowIndex="3">
                     <columnConstraints>
@@ -65,7 +71,7 @@
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor></Button>
-                        <Button fx:id="btnSair" mnemonicParsing="false" onAction="#sair" text="Sair" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                        <Button fx:id="btnSair" mnemonicParsing="false" onAction="#sair" styleClass="btnDanger" text="Sair" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                            <font>
                               <Font size="14.0" />
                            </font>
