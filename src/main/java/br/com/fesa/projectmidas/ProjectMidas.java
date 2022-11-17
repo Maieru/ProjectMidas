@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import static javafx.application.Application.launch;
+import javafx.scene.image.Image;
 
 
 public class ProjectMidas extends Application {
@@ -18,6 +19,7 @@ public class ProjectMidas extends Application {
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("login"), 640, 480);
         scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
+        stage.getIcons().add(new Image("file:src/main/resources/br/com/fesa/projectmidas/midas.jfif"));
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
