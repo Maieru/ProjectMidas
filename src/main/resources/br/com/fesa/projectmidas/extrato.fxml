@@ -22,7 +22,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <BarChart fx:id="bchGastosUltimosMeses" layoutX="17.0" layoutY="77.0" prefHeight="210.0" prefWidth="606.0" titleSide="BOTTOM">
+      <BarChart fx:id="bchGastosUltimosMeses" layoutX="17.0" layoutY="77.0" prefHeight="198.0" prefWidth="606.0" titleSide="BOTTOM">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
