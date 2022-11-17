@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
@@ -14,63 +15,41 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane prefHeight="480.0" prefWidth="640.0" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fesa.projectmidas.controllers.SelecaoMetodoPagamento">
-   <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="700.0" minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="500.0" prefWidth="313.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="700.0" minWidth="10.0" prefWidth="100.0" />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints maxHeight="300.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="170.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-   </rowConstraints>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <GridPane>
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-         </rowConstraints>
-         <children>
-            <Button fx:id="btnVoltar" mnemonicParsing="false" onAction="#voltar" prefHeight="27.0" prefWidth="27.0" styleClass="btnVoltar" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></Button>
-         </children>
-      </GridPane>
-      <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-         <children>
-            <Label prefHeight="28.0" prefWidth="263.0" text="Selecione o tipo de pagamento" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <font>
-                  <Font size="19.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
-            </Label>
-            <ChoiceBox fx:id="cmbSelecaoPagamento" maxHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="237.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-         </children>
-      </GridPane>
-      <Button fx:id="btnConfirmar" mnemonicParsing="false" onAction="#confirmar" prefHeight="31.0" prefWidth="251.0" styleClass="primary-button" text="Confirmar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
-         <font>
-            <Font size="15.0" />
-         </font>
+      <Button fx:id="btnVoltar" layoutX="50.0" layoutY="50.0" mnemonicParsing="false" onAction="#voltar" prefHeight="27.0" prefWidth="27.0" styleClass="btnVoltar">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <VBox alignment="CENTER" layoutX="189.0" layoutY="140.0" prefHeight="200.0">
+         <children>
+            <Label prefHeight="28.0" prefWidth="263.0" text="Selecione o tipo de pagamento">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="cmbSelecaoPagamento" maxHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="237.0">
+               <VBox.margin>
+                  <Insets top="16.0" />
+               </VBox.margin>
+            </ChoiceBox>
+            <Button fx:id="btnConfirmar" mnemonicParsing="false" onAction="#confirmar" prefHeight="31.0" prefWidth="251.0" styleClass="primary-button" text="Confirmar">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="32.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
    </children>
-</GridPane>
+</AnchorPane>

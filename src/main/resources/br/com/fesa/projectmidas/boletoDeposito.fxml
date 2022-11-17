@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
@@ -12,58 +14,47 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fesa.projectmidas.controllers.BoletoDepositoController">
+<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="640.0" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fesa.projectmidas.controllers.BoletoDepositoController">
    <children>
-      <GridPane prefHeight="400.0" prefWidth="600.0" stylesheets="@Styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="248.0" minWidth="10.0" prefWidth="239.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="205.0" minWidth="10.0" prefWidth="150.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="239.0" minWidth="10.0" prefWidth="211.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints maxHeight="62.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="90.0" minHeight="10.0" prefHeight="90.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Label prefHeight="17.0" prefWidth="97.0" text="Código do boleto" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <TextArea fx:id="txaCodBoleto" prefHeight="91.0" prefWidth="248.0" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-               </children>
-            </GridPane>
-            <GridPane GridPane.columnIndex="2" GridPane.rowIndex="1">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-            </GridPane>
-            <Button fx:id="btnVoltar" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#voltar" prefHeight="25.0" prefWidth="40.0" text="&lt;--" GridPane.columnIndex="1" />
-            <Button alignment="CENTER" maxHeight="100.0" maxWidth="100.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-size: 100px;" styleClass="sucesso" stylesheets="@Styles.css" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
-               <GridPane.margin>
-                  <Insets top="10.0" />
-               </GridPane.margin>
-               <padding>
-                  <Insets top="10.0" />
-               </padding>
-            </Button>
-            <Label text="Sucesso!" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
-            </Label>
-            <Button fx:id="btnCopiar" mnemonicParsing="false" onAction="#copiarCodigo" prefHeight="25.0" prefWidth="210.0" text="Copiar Para Área de Transferência" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-         </children>
-      </GridPane>
+      <Button fx:id="btnCopiar" layoutX="217.0" layoutY="362.0" mnemonicParsing="false" onAction="#copiarCodigo" prefHeight="25.0" prefWidth="210.0" styleClass="primary-button" text="Copiar Código do Boleto">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label layoutX="286.0" layoutY="123.0" text="Sucesso!">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </Label>
+      <Button alignment="CENTER" layoutX="270.0" layoutY="16.0" maxHeight="100.0" maxWidth="100.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-size: 100px;" styleClass="sucesso" stylesheets="@Styles.css">
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+      </Button>
+      <Button fx:id="btnVoltar" layoutX="50.0" layoutY="50.0" mnemonicParsing="false" onAction="#voltar" prefHeight="27.0" prefWidth="27.0" styleClass="btnVoltar">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Label layoutX="251.0" layoutY="191.0" maxWidth="-Infinity" prefHeight="17.0" text="Código do boleto">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </Label>
+      <TextArea fx:id="txaCodBoleto" editable="false" layoutX="192.0" layoutY="224.0" maxHeight="-Infinity" prefHeight="110.0" prefWidth="258.0" styleClass="textArea" wrapText="true">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <font>
+            <Font size="16.0" />
+         </font></TextArea>
    </children>
 </AnchorPane>

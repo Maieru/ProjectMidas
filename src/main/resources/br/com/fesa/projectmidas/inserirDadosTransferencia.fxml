@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -11,131 +17,77 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fesa.projectmidas.controllers.InserirDadosTransferenciaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fesa.projectmidas.controllers.InserirDadosTransferenciaController">
    <children>
-      <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
-         <children>
-            <Label text="Agência:">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor></Label>
-            <ComboBox fx:id="cmbAgencia" onAction="#atualizarDados" prefHeight="25.0" prefWidth="249.0" GridPane.rowIndex="1" />
-         </children>
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-      </GridPane>
-      <GridPane GridPane.columnIndex="3" GridPane.rowIndex="2">
-         <children>
-            <Label text="Numero Conta:">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor></Label>
-            <TextField fx:id="txtConta" styleClass="input" GridPane.rowIndex="1">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor></TextField>
-         </children>
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-      </GridPane>
-      <Button fx:id="btnConfirmar" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#confirmar" styleClass="primary-button" text="Confirmar" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="4">
-         <font>
-            <Font size="14.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Button>
-      <Button fx:id="btnVoltar" mnemonicParsing="false" onAction="#voltar" prefHeight="27.0" prefWidth="27.0" styleClass="btnVoltar" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+      <Button fx:id="btnVoltar" layoutX="50.0" layoutY="50.0" mnemonicParsing="false" onAction="#voltar" prefHeight="27.0" prefWidth="27.0" styleClass="btnVoltar">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
-         <GridPane.margin>
-            <Insets right="10.0" />
-         </GridPane.margin>
       </Button>
-      <GridPane GridPane.columnIndex="1" GridPane.rowIndex="3">
-         <children>
-            <Label text="Correntista">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor></Label>
-            <TextField fx:id="txtCorrentista" editable="false" styleClass="input" GridPane.rowIndex="1">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor></TextField>
-         </children>
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-      </GridPane>
-      <GridPane GridPane.columnIndex="3" GridPane.rowIndex="3">
-         <children>
-            <Label text="CPF">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor></Label>
-            <TextField fx:id="txtCPF" editable="false" styleClass="input" GridPane.rowIndex="1">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor></TextField>
-         </children>
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-      </GridPane>
+      <Button fx:id="btnConfirmar" alignment="CENTER" contentDisplay="CENTER" layoutX="279.0" layoutY="341.0" mnemonicParsing="false" onAction="#confirmar" styleClass="primary-button" text="Confirmar" textAlignment="CENTER">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Label layoutX="74.0" layoutY="131.0" text="Agência:">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cmbAgencia" layoutX="74.0" layoutY="163.0" onAction="#atualizarDados" prefHeight="30.0" prefWidth="175.0" />
+      <Label layoutX="74.0" layoutY="238.0" text="Correntista">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtCorrentista" editable="false" layoutX="74.0" layoutY="270.0" prefHeight="30.0" prefWidth="175.0" styleClass="input">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtConta" layoutX="377.0" layoutY="163.0" prefHeight="30.0" prefWidth="175.0" styleClass="input">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="377.0" layoutY="131.0" text="Numero Conta:">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="377.0" layoutY="239.0" text="CPF">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtCPF" editable="false" layoutX="377.0" layoutY="270.0" prefHeight="30.0" styleClass="input">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
    </children>
-   <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="700.0" minWidth="10.0" prefWidth="20.0" />
-      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="211.0" minWidth="10.0" prefWidth="211.0" />
-      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="100.0" minWidth="50.0" prefWidth="10.0" />
-      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="211.0" minWidth="10.0" prefWidth="211.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="700.0" minWidth="10.0" prefWidth="10.0" />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints />
-      <RowConstraints maxHeight="500.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="90.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="90.0" minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="90.0" minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="500.0" minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-   </rowConstraints>
-</GridPane>
+</AnchorPane>
