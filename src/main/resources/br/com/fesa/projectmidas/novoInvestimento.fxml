@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="640.0" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fesa.projectmidas.controllers.NovoInvestimentoController">
+<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="640.0" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fesa.projectmidas.controllers.NovoInvestimentoController">
    <children>
       <Button fx:id="btnVoltar" layoutX="50.0" layoutY="50.0" mnemonicParsing="false" onAction="#voltar" prefHeight="27.0" prefWidth="27.0" styleClass="btnVoltar" stylesheets="@Styles.css">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="btnConfirmar" layoutX="226.0" layoutY="375.0" mnemonicParsing="false" onAction="#confirmar" prefHeight="25.0" prefWidth="189.0" styleClass="primary-button" text="Confirmar">
+      <Button fx:id="btnConfirmar" layoutX="223.0" layoutY="375.0" mnemonicParsing="false" onAction="#confirmar" prefHeight="25.0" prefWidth="189.0" styleClass="primary-button" text="Confirmar">
          <font>
-            <Font size="14.0" />
+            <Font size="16.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label fx:id="lblRendimentoDiario" alignment="CENTER_RIGHT" layoutX="415.0" layoutY="283.0" text="R$ Rendimento Diário">
+      <Label fx:id="lblRendimentoDiario" alignment="CENTER_RIGHT" layoutX="360.0" layoutY="300.0" text="R$ Rendimento Diário">
          <font>
-            <Font size="18.0" />
+            <Font size="16.0" />
          </font>
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
       </Label>
-      <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="253.0" layoutY="283.0" text="Rendimento Diário">
+      <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="159.0" layoutY="300.0" text="Rendimento Diário:">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
       </Label>
-      <TextField fx:id="txtValor" layoutX="50.0" layoutY="296.0" styleClass="input">
+      <TextField fx:id="txtValor" layoutX="361.0" layoutY="155.0" styleClass="input">
          <font>
             <Font size="14.0" />
          </font>
@@ -47,7 +47,7 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <Label layoutX="50.0" layoutY="256.0" text="Valor Investido">
+      <Label layoutX="361.0" layoutY="119.0" text="Valor Investido">
          <font>
             <Font size="18.0" />
          </font>
@@ -55,44 +55,44 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </Label>
-      <Label fx:id="lblValorMinimo" alignment="CENTER_RIGHT" layoutX="415.0" layoutY="156.0" text="R$ Valor Minimo">
+      <Label fx:id="lblValorMinimo" alignment="CENTER_RIGHT" layoutX="360.0" layoutY="258.0" text="R$ Valor Minimo">
          <font>
-            <Font size="18.0" />
+            <Font size="16.0" />
          </font>
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
       </Label>
-      <Label fx:id="lblPorcentagemRendimento" alignment="CENTER_RIGHT" layoutX="415.0" layoutY="118.0" prefHeight="30.0" prefWidth="112.0" text="\%Rendimento">
+      <Label fx:id="lblPorcentagemRendimento" alignment="CENTER_RIGHT" layoutX="360.0" layoutY="216.0" prefHeight="30.0" text="\%Rendimento">
          <font>
-            <Font size="18.0" />
+            <Font size="16.0" />
          </font>
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
       </Label>
-      <Label alignment="CENTER_RIGHT" layoutX="291.0" layoutY="156.0" text="Valor Minimo:">
+      <Label alignment="CENTER_RIGHT" layoutX="159.0" layoutY="258.0" text="Valor Minimo:">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
       </Label>
-      <Label alignment="CENTER_RIGHT" layoutX="238.0" layoutY="119.0" text="Rendimento (Diário):">
+      <Label alignment="CENTER_RIGHT" layoutX="159.0" layoutY="216.0" text="Rendimento (Diário):">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
       </Label>
-      <ComboBox fx:id="cmbTipoInvestimento" layoutX="50.0" layoutY="157.0" onAction="#atualizarDados" prefHeight="25.0" prefWidth="165.0">
+      <ComboBox fx:id="cmbTipoInvestimento" layoutX="150.0" layoutY="157.0" onAction="#atualizarDados" prefHeight="25.0" prefWidth="165.0" styleClass="comboBox">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </ComboBox>
-      <Label layoutX="50.0" layoutY="119.0" text="Tipo Investimento:">
+      <Label layoutX="150.0" layoutY="119.0" text="Tipo Investimento:">
          <font>
             <Font size="18.0" />
          </font>

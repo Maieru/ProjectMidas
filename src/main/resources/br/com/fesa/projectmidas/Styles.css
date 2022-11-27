@@ -1,7 +1,28 @@
+.fundo{
+    -fx-background-color:#000000;
+    -fx-text-fill:white;
+}/*
+.primary-button{
+    -fx-background-color:transparent;
+    -fx-border-color:white;
+    -fx-text-fill:white;
+    -fx-border-radius:100;
+    -fx-background-radius:100;
+    -fx-effect:dropshadow(gaussian,rgba(0,0,0,0.3),13,0.5,0,0)
+}
+.primary-button:hover{
+    -fx-text-fill:black;
+    -fx-border-color:#fcc200;
+    -fx-background-color:#ebb605;
+    -fx-scale-x:1.05;
+    -fx-scale-y:1.05;
+    -fx-translate-z:0;
+}*/
+
 .primary-button{
     -fx-background-color:#fcc200;
-    -fx-border-radius:10;
-    -fx-background-radius:10;
+    -fx-border-radius:100;
+    -fx-background-radius:100;
     -fx-effect:dropshadow(gaussian,rgba(0,0,0,0.3),13,0.5,0,0)
 }
 .primary-button:hover{
@@ -10,6 +31,7 @@
     -fx-scale-y:1.05;
     -fx-translate-z:0;
 }
+
 .input{
     -fx-border-radius:10;
     -fx-background-radius:10;
@@ -23,18 +45,42 @@
     -fx-border-width:2;
 }
 .textArea{
-    -fx-background-radius:6;
-    -fx-border-radius:6;
+    -fx-border-radius:10;
+    -fx-background-radius:10;
     -fx-effect:dropshadow(gaussian,rgba(0,0,0,0.3),13,0.5,0,0);
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
+    
 }
 .textArea:focused{
     -fx-background-color:#cccccc;
     -fx-border-color:#fcc203;
+    -fx-border-width:2;
+    -fx-outline:0;
+}
+.textArea:focus{
+    -fx-background-color:#cccccc;
+    -fx-border-color:#fcc203;
+    -fx-border-width:2;
+}
+/*
+.input{
+    -fx-background-color:#000000;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-border-color:white;
+    -fx-text-fill:white;
+    -fx-background-radius:10;
+    -fx-effect:dropshadow(gaussian,rgba(0,0,0,0.3),13,0.5,0,0);
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+.input:focused{
+    -fx-border-color:#fcc203;
     -fx-outline:0;
     -fx-border-width:2;
 }
+*/
+
 
 .text-danger{
     -fx-text-fill:#ff0000;
@@ -54,7 +100,15 @@
 }
 .btnRetonar{
     -fx-background-color:#fcc200;
-    opacity:0.5;
+    -fx-border-radius:100;
+    -fx-background-radius:100;
+    
+}
+.btnRetonar:hover{
+    -fx-background-color:#ebb605;
+    -fx-scale-x:1.05;
+    -fx-scale-y:1.05;
+    -fx-translate-z:0;
 }
 .comboBox{
     -fx-border-radius:10;
@@ -64,7 +118,7 @@
     -fx-faint-focus-color: transparent;
 }
 .comboBox:hover{
-    -fx-effect:unset;
+    
 }
 
 .sucesso{
@@ -74,12 +128,23 @@
     -fx-background-position: 90%;
     -fx-background-color:rgba(0,0,0,0);
 }
-
+.btnConfigs{
+    -fx-background-color:#6C757D;
+    -fx-border-radius:100;
+    -fx-background-radius:100;
+    -fx-effect:dropshadow(gaussian,rgba(0,0,0,0.3),13,0.5,0,0)
+}
+.btnConfigs:hover{
+    -fx-background-color:#646c73;
+    -fx-scale-x:1.05;
+    -fx-scale-y:1.05;
+    -fx-translate-z:0;
+}
 .btnDanger{
     -fx-background-color:#DC3545;
     -fx-text-fill:white;
-    -fx-border-radius:10;
-    -fx-background-radius:10;
+    -fx-border-radius:100;
+    -fx-background-radius:100;
     -fx-effect:dropshadow(gaussian,rgba(0,0,0,0.3),13,0.5,0,0)    
 }
 .btnDanger:hover{
@@ -91,8 +156,8 @@
 .btnEdit{
     -fx-background-color:#007bff;
     -fx-text-fill:white;
-    -fx-border-radius:10;
-    -fx-background-radius:10;
+    -fx-border-radius:100;
+    -fx-background-radius:100;
     -fx-effect:dropshadow(gaussian,rgba(0,0,0,0.3),13,0.5,0,0)
 }
 .btnEdit:hover{
@@ -109,3 +174,4 @@
     -fx-underline:true;
     -fx-text-fill:rgb(255,188,79);
 }
+

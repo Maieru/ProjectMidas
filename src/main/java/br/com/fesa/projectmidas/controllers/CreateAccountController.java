@@ -22,6 +22,8 @@ import javafx.util.converter.IntegerStringConverter;
 
 public class CreateAccountController extends BaseController {
 
+    @FXML Button btnVoltar;
+    
     @FXML
     private TextField txtAgencia;
 
@@ -77,6 +79,10 @@ public class CreateAccountController extends BaseController {
 
     @FXML
     private void retornar(ActionEvent event) throws IOException {
+        ProjectMidas.setRoot("login");
+    }
+    @FXML
+    private void voltar(ActionEvent event) throws IOException {
         ProjectMidas.setRoot("login");
     }
 }
